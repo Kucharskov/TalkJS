@@ -20,6 +20,7 @@ const eventHandler = function(io) {
 			io.sockets.emit('get users', storage.countAll());
 			if(user.logged) io.sockets.emit('message', chat.createMsg(UserSystem, 'Użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong> pożegnał się z nami!', false));
 			storage.removeUser(socket.id);
+			antyspam.removeAutor(socket.id);
 		});
 
 		//User set

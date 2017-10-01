@@ -22,6 +22,7 @@ const eventHandler = function(io) {
 
 		//User set
 		socket.on('set user', function(username, callback) {
+			if(!(callback instanceof Function)) return;
 			if(storage.setUsername(socket.id, chat.escapeText(username))) {
 				callback(true);
 				

@@ -8,17 +8,21 @@ const eventHandler = function(io) {
 	io.sockets.on('connection', function(socket) {
 		console.log('Connected: Socket connected!');
 		socket.emit('message', chat.createMsg(UserSystem, 'Witaj na czacie. Pamiętaj o zachowaniu kultury!', false));
+		
 		storage.addUser(socket.id);
 		antyspam.addAutor(socket.id);
+		
 		socket.emit('init');
 		io.sockets.emit('get users', storage.countAll());
 		
 		//Disconnect
 		socket.on('disconnect', function(data) {
 			console.log('Disconnected: Socket disconnected!');
+			
 			const user = storage.findUser(socket.id);
 			io.sockets.emit('get users', storage.countAll());
 			if(user.logged) io.sockets.emit('message', chat.createMsg(UserSystem, 'Użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong> pożegnał się z nami!', false));
+			
 			storage.removeUser(socket.id);
 			antyspam.removeAutor(socket.id);
 		});

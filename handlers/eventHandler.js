@@ -1,6 +1,7 @@
 //Handler: eventHandler.js
 const storage = require('../utils/storage');
 const chat = require('../utils/chat');
+const antyspam = require('../utils/antyspam');
 const UserSystem = storage.createUser("System", "danger");
 
 const eventHandler = function(io) {
@@ -8,6 +9,7 @@ const eventHandler = function(io) {
 		console.log('Connected: Socket connected!');
 		socket.emit('message', chat.createMsg(UserSystem, 'Witaj na czacie. Pamiętaj o zachowaniu kultury!', false));
 		storage.addUser(socket.id);
+		antyspam.addAutor(socket.id);
 		socket.emit('init');
 		io.sockets.emit('get users', storage.countAll());
 		
@@ -35,10 +37,8 @@ const eventHandler = function(io) {
 		//Send Message
 		socket.on('send message', function(message) {
 			const user = storage.findUser(socket.id);
-			if(user.logged) {
-				message = message.trim();
-				if(message != "") io.sockets.emit('message', chat.createMsg(storage.findUser(socket.id), message, true));
-			}
+			message = message.trim();
+			if(user.logged && message != "" && antyspam.test(socket.id, message)) io.sockets.emit('message', chat.createMsg(storage.findUser(socket.id), message, true));
 		});
 	});
 }

@@ -34,8 +34,11 @@ const eventHandler = function(io) {
 
 		//Send Message
 		socket.on('send message', function(message) {
-			message = message.trim();
-			if(message != "") io.sockets.emit('message', chat.createMsg(storage.findUser(socket.id), message, true));
+			const user = storage.findUser(socket.id);
+			if(user.logged) {
+				message = message.trim();
+				if(message != "") io.sockets.emit('message', chat.createMsg(storage.findUser(socket.id), message, true));
+			}
 		});
 	});
 }

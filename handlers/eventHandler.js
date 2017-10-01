@@ -38,7 +38,10 @@ const eventHandler = function(io) {
 		socket.on('send message', function(message) {
 			const user = storage.findUser(socket.id);
 			message = message.trim();
-			if(user.logged && message != "" && antyspam.test(socket.id, message)) io.sockets.emit('message', chat.createMsg(storage.findUser(socket.id), message, true));
+			if(message != "") {
+				if(!antyspam.test(socket.id, message)) socket.emit('message', chat.createMsg(UserSystem, 'Nie powtarzaj się i nie spamuj!', false));
+				else if(user.logged) io.sockets.emit('message', chat.createMsg(storage.findUser(socket.id), message, true));
+			}
 		});
 	});
 }

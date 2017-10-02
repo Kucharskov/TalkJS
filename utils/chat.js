@@ -21,15 +21,15 @@ function linkify(text) {
 
 //Funkcja do generowania czasu
 function generateTime() {
-    let now = new Date();
-    let hours = now.getHours();
-    let min = now.getMinutes();
-    let sec = now.getSeconds();
-    
-    if (hours < 10) hours = "0" + hours;
-    if (min < 10) min = "0" + min;
-    if (sec < 10) sec = "0" + sec;
-    
+	let now = new Date();
+	let hours = now.getHours();
+	let min = now.getMinutes();
+	let sec = now.getSeconds();
+
+	if (hours < 10) hours = "0" + hours;
+	if (min < 10) min = "0" + min;
+	if (sec < 10) sec = "0" + sec;
+
 	return hours + ":" + min + ":" + sec;
 }
 
@@ -38,7 +38,7 @@ module.exports = {
 		message = (escape) ? linkify(escapeText(message)) : linkify(message);
 		return '<p class="m-0 msg" data-toggle="tooltip" data-placement="right" title="' + generateTime()  + '"><span class="badge badge-' + author.color + '">' + author.username + '</span> ' + message + '</p>';
 	},
-	
+
 	escapeText: function(data) {
 		return escapeText(data);
 	},

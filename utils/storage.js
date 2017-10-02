@@ -14,7 +14,7 @@ User.prototype.setUsername = function (username) {
 
 	for(var user in users)
 		if(users[user].username == checkname) return false;
-	
+
 	this.username = checkname;
 	this.logged = true;
 	return true;
@@ -28,18 +28,18 @@ module.exports = {
 	addUser: function(id) {
 		users[id] = new User();
 	},
-	
+
 	createUser: function(username, color) {
 		let user = new User();
 		user.username = username;
 		user.color = color;
 		return user;
 	},
-	
+
 	findUser: function(id) {
 		if(users[id]) return users[id];
 	},
-	
+
 	removeUser: function(id) {
 		if(users[id]) delete users[id];
 	},
@@ -51,7 +51,7 @@ module.exports = {
 	setColor: function(id, color) {
 		if(users[id]) users[id].setColor(color);
 	},
-	
+
 	countAll: function() {
 		let guestCount = 0;
 		let usersCount = 0;

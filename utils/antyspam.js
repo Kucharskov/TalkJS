@@ -9,12 +9,12 @@ module.exports = {
 		messages[id] = "";
 		timestamps[id] = date.getTime();
 	},
-	
+
 	removeAutor: function(id) {
 		if(messages[id]) delete messages[id];
 		if(timestamps[id]) delete timestamps[id];
 	},
-	
+
 	test: function(id, message) {
 		if(messages[id] === message) return false;
 		else {

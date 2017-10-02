@@ -9,7 +9,7 @@ module.exports = {
 		
 		return (iplist[ip] > perIPlimit) ? false : true;
 	},
-	
+
 	removeIP: function(ip) {
 		iplist[ip]--;
 		if(iplist[ip] === 0) delete iplist[ip];

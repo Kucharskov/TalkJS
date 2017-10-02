@@ -10,14 +10,12 @@ const eventHandler = function(io) {
 		console.log('Connected: Socket ' + socket.id + 'connected!');
 		socket.emit('message', chat.createMsg(UserSystem, 'Witaj na czacie. Pamiętaj o zachowaniu kultury!', false));
 		socket.emit('init');
-		
-		storage.addUser(socket.id);
-		antyspam.addAutor(socket.id);
-		
-		if(!ipguard.addIP(socket.handshake.headers['x-real-ip'])) {
+				
+		if(ipguard.addIP(socket.handshake.headers['x-real-ip'])) {
+			storage.addUser(socket.id);
+			antyspam.addAutor(socket.id);
+		} else {
 			socket.emit('message', chat.createMsg(UserSystem, 'Wykryto zbyt wiele połączeń z Twojego adresu IP!', false));
-			storage.removeUser(socket.id);
-			antyspam.removeAutor(socket.id);
 			ipguard.removeIP(socket.handshake.headers['x-real-ip']);
 			socket.disconnect();
 		}

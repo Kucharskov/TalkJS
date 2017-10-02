@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "M. Kucharskov (Michał Kucharski)",
+  "author": "M. Kucharskov (Michał Kucharski); ZobekPL (Tymoteusz Cierzan)",
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.5",

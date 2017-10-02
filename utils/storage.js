@@ -30,8 +30,8 @@ module.exports = {
 	
 	createUser: function(username, color) {
 		let user = new User();
-		user.setUsername(username);
-		user.setColor(color);
+		user.username = username;
+		user.color = color;
 		return user;
 	},
 	

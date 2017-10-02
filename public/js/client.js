@@ -3,7 +3,7 @@ $(function(){
 	const chat = $('#chat');
 	const message = $('#message');
 	const username = $('#username');
-	const title = document.title;
+	const title = "TALK.KUCHARSKOV.PL";
 	let logged = false;
 	let windowActive = true;
 	let unreadCounter = 0;

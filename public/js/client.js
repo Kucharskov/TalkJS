@@ -7,7 +7,7 @@ $(function(){
 	let logged = false;
 	let windowActive = true;
 	let unreadCounter = 0;
-		
+
 	//Logowanie
 	$('#loginForm').submit(function(e){
 		e.preventDefault();
@@ -32,7 +32,7 @@ $(function(){
 		message.val('');
 		return false;
 	});
-	
+
 	//Inicjalizacja
 	socket.on('init', function() {
 		logged = false;
@@ -40,7 +40,7 @@ $(function(){
 		$('#message').prop('disabled', true);
 		$('#nameCount').html(15 - username.val().length);
 	});
-	
+
 	//Reakcja na wiadomość
 	socket.on('message', function(data) {
 		chat.append(data);
@@ -55,31 +55,31 @@ $(function(){
 			document.title = '(' + unreadCounter + ') ' + title;
 		}
 	});
-	
+
 	//Odbieranie listy uzytkowników
 	socket.on('get users', function(counter, userlist) {
 		$('#counter').html(counter);
 		$('#userlist').html(userlist);
 	});
-	
+
 	//Odbieranie błędu logowania
 	socket.on('usererror', function() {
 		username.addClass('border border-danger');
 		username.attr('placeholder', 'Wybierz inną nazwe!');
 		alert('Wybrana nazwa użytkownika aktualnie jest zajęta lub niepoprawna, wybierz inną nazwę aby dołączyć do czatu!');
 	});
-	
+
 	//Licznik znaków w loginie
-	username.on('keyup', function() {
+	username.on("keyup", function() {
 		$('#nameCount').html(15 - username.val().length);
 	});
-	
+
 	//Chowanie messageForm
-	$('#nav').on('click', function() {
-		if(!$('#nav-chat-tab').hasClass('active')) $('#messageForm').fadeIn(250);
+	$('.nav-item').on("click", function() {
+		if($(this).attr('id') == 'nav-chat-tab') $('#messageForm').fadeIn(250);
 		else $('#messageForm').fadeOut(250);
 	});
-	
+
 	//Wykrywanie aktywności okna
 	window.addEventListener('focus', function() {
 		windowActive = true;

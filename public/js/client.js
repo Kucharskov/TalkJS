@@ -15,7 +15,6 @@ $(function(){
 				$('#message').prop('disabled', false);
 			}
 		});
-		$('#nameCount').html(15 - username.val().length);
 		username.val('');
 		return false;
 	});
@@ -36,6 +35,7 @@ $(function(){
 		logged = false;
 		$('#loginModal').modal('show');
 		$('#message').prop('disabled', true);
+		$('#nameCount').html(15 - username.val().length);
 	});
 	
 	//Reakcja na wiadomość

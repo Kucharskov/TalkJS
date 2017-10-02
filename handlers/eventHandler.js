@@ -7,7 +7,7 @@ const UserSystem = storage.createUser("System", "danger");
 
 const eventHandler = function(io) {
 	io.sockets.on('connection', function(socket) {
-		console.log('Connected: Socket connected!');
+		console.log('Connected: Socket ' + socket.id + 'connected!');
 		socket.emit('message', chat.createMsg(UserSystem, 'Witaj na czacie. Pamiętaj o zachowaniu kultury!', false));
 		socket.emit('init');
 		
@@ -19,7 +19,7 @@ const eventHandler = function(io) {
 		
 		//Disconnect
 		socket.on('disconnect', function(data) {
-			console.log('Disconnected: Socket disconnected!');
+			console.log('Disconnected: Socket ' + socket.id + 'disconnected!');
 			
 			const user = storage.findUser(socket.id);
 			io.sockets.emit('get users', storage.countAll());

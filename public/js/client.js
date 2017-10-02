@@ -3,7 +3,10 @@ $(function(){
 	const chat = $('#chat');
 	const message = $('#message');
 	const username = $('#username');
+	const title = "TALK.KUCHARSKOV.PL";
 	let logged = false;
+	let windowActive = true;
+	let unreadCounter = 0;
 		
 	//Logowanie
 	$('#loginForm').submit(function(e){
@@ -46,6 +49,11 @@ $(function(){
 		//Animacja wiadomości
 		$('p.msg').last().fadeIn(250);
 		chat.scrollTop(chat.prop('scrollHeight'));
+		//Powiadomienie w <title>
+		if(!windowActive) {
+			unreadCounter++;
+			document.title = '(' + unreadCounter + ') ' + title;
+		}
 	});
 	
 	//Odbieranie listy uzytkowników
@@ -63,5 +71,17 @@ $(function(){
 	//Licznik znaków w loginie
 	username.keyup(function() {
 		$('#nameCount').html(15 - username.val().length);
+	});
+	
+	//Wykrywanie aktywności okna
+	window.addEventListener('focus', function() {
+		windowActive = true;
+		unreadCounter = 0;
+		document.title = title;
+	});
+
+	//Wykrywanie nieaktywności okna
+	window.addEventListener('blur', function() {
+		windowActive = false;
 	});
 });

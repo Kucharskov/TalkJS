@@ -15,8 +15,8 @@ $(function(){
 				$('#message').prop('disabled', false);
 			}
 		});
-		username.val('');
 		$('#nameCount').html(15 - username.val().length);
+		username.val('');
 		return false;
 	});
 

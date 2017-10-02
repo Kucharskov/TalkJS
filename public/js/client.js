@@ -70,7 +70,7 @@ $(function(){
 	});
 	
 	//Licznik znaków w loginie
-	username.keyup(function() {
+	username.on("keyup", function() {
 		$('#nameCount').html(15 - username.val().length);
 	});
 	

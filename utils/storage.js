@@ -61,7 +61,7 @@ module.exports = {
 		}
 		return (guestCount > 0) ? usersCount + ' (' + guestCount + ' gości)' : usersCount;
 	},
-	
+
 	getUsers: function() {
 		let userlist = '';
 		for(var user in users) {

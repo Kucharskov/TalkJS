@@ -20,7 +20,7 @@ const eventHandler = function(io) {
 			socket.disconnect();
 		}
 		
-		io.sockets.emit('get users', storage.countAll());
+		io.sockets.emit('get users', storage.countAll(), storage.getUsers());
 				
 		//Disconnect
 		socket.on('disconnect', function(data) {
@@ -33,7 +33,7 @@ const eventHandler = function(io) {
 			antyspam.removeAutor(socket.id);
 			ipguard.removeIP(socket.handshake.headers['x-real-ip']);
 			
-			io.sockets.emit('get users', storage.countAll());
+			io.sockets.emit('get users', storage.countAll(), storage.getUsers());
 		});
 
 		//User set
@@ -43,7 +43,7 @@ const eventHandler = function(io) {
 				callback(true);
 				
 				const user = storage.findUser(socket.id);
-				io.sockets.emit('get users', storage.countAll());
+				io.sockets.emit('get users', storage.countAll(), storage.getUsers());
 				io.sockets.emit('message', chat.createMsg(UserSystem, 'Dołączył do nas użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong>!', false));
 			} else socket.emit('usererror');
 		});

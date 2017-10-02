@@ -44,11 +44,24 @@
 				
 				<div class="col-12">
 					<div class="card">
-						<div class="card-body" id="chat">
+						<div class="card-header">
+							<nav class="nav nav-tabs card-header-tabs" id="nav" role="tablist">
+								<a class="nav-item nav-link active" id="nav-chat-tab" data-toggle="tab" href="#nav-chat" role="tab" aria-controls="nav-chat" aria-expanded="true">Czat</a>
+								<a class="nav-item nav-link" id="nav-users-tab" data-toggle="tab" href="#nav-users" role="tab" aria-controls="nav-users">Użytkownicy</a>
+							</nav>
+						</div>
+						<div class="card-body tab-content" id="nav-tabContent">
+							<div class="tab-pane fade show active" id="nav-chat" role="tabpanel" aria-labelledby="nav-chat-tab">
+								<div id="chat"></div>
+							</div>
+							<div class="tab-pane fade" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
+								<p class="h5">Lista zalogowanych użytkowników</p>
+								<div id="userlist"></div>
+							</div>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="col-12 mt-2">	
 					<form id="messageForm">					
 						<div class="input-group">

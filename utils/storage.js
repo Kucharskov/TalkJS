@@ -60,5 +60,13 @@ module.exports = {
 			else guestCount++;
 		}
 		return (guestCount > 0) ? usersCount + ' (' + guestCount + ' gości)' : usersCount;
+	},
+	
+	getUsers: function() {
+		let userlist = '';
+		for(var user in users) {
+			if(users[user].logged) userlist += '<span class="badge badge-' + users[user].color + '">' + users[user].username + '</span> ';
+		}
+		return (userlist === '') ? '<div class="alert alert-danger m-0" role="alert">Brak zalogowanych użytkowników</div>' : userlist;
 	}
 };

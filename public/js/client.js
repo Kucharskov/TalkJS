@@ -57,8 +57,9 @@ $(function(){
 	});
 	
 	//Odbieranie listy uzytkowników
-	socket.on('get users', function(data) {
-		$('#counter').html(data);
+	socket.on('get users', function(counter, userlist) {
+		$('#counter').html(counter);
+		$('#userlist').html(userlist);
 	});
 	
 	//Odbieranie błędu logowania
@@ -72,6 +73,12 @@ $(function(){
 	username.keyup(function() {
 		$('#nameCount').html(15 - username.val().length);
 	});
+	
+	//Chowanie messageForm
+	$('#nav').on("click", function() {
+		if(!$('#nav-chat-tab').hasClass('active')) $('#messageForm').fadeIn(250);
+		else $('#messageForm').fadeOut(250);
+	})
 	
 	//Wykrywanie aktywności okna
 	window.addEventListener('focus', function() {

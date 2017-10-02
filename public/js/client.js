@@ -70,15 +70,15 @@ $(function(){
 	});
 	
 	//Licznik znaków w loginie
-	username.on("keyup", function() {
+	username.on('keyup', function() {
 		$('#nameCount').html(15 - username.val().length);
 	});
 	
 	//Chowanie messageForm
-	$('#nav').on("click", function() {
+	$('#nav').on('click', function() {
 		if(!$('#nav-chat-tab').hasClass('active')) $('#messageForm').fadeIn(250);
 		else $('#messageForm').fadeOut(250);
-	})
+	});
 	
 	//Wykrywanie aktywności okna
 	window.addEventListener('focus', function() {

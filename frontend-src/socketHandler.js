@@ -40,6 +40,12 @@ socket.on('message', function(data) {
 	state.domElements.chat.append(data);
 	//Dodanie timestampa wiadomości
 	$('p.msg').last().tooltip();
+	//Dodawanie klikalnego nicku - wymaga odbindowania aby nie nakłądać bindów
+	$('p.msg span.badge:not(.badge-danger)').unbind('click');
+	$('p.msg span.badge:not(.badge-danger)').on('click', function() {
+		if(state.system.isUserLoggedIn)
+			state.domElements.message.val(state.domElements.message.val() + '@' + $(this).html() + ' ');
+	});
 	//Animacja wiadomości
 	$('p.msg').last().fadeIn(250);
 	state.domElements.chat.scrollTop(state.domElements.chat.prop('scrollHeight'));

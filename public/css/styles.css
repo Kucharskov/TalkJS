@@ -28,3 +28,7 @@ h1 {
 p.msg {
     display: none;
 }
+
+p.msg span.badge:not(.badge-danger) {
+	cursor: pointer;
+}

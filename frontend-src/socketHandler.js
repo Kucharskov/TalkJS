@@ -8,8 +8,8 @@ $('#loginForm').submit(function(e){
 	socket.emit('set user', state.domElements.username.val(), function(data){
 		if(data) {
 			state.system.isUserLoggedIn = true;
-			$('#loginModal').modal('hide');
-			$('#message').prop('disabled', false);
+			state.domElements.loginModal.modal('hide');
+			state.domElements.message.prop('disabled', false);
 		}
 	});
 	state.domElements.username.val('');
@@ -20,7 +20,7 @@ $('#loginForm').submit(function(e){
 $('#messageForm').submit(function(e){
 	e.preventDefault();
 	if(!state.system.isUserLoggedIn)
-		$('#loginModal').modal('show');
+		state.domElements.loginModal.modal('show');
 	else if(state.domElements.message.val().trim() != '')
 		socket.emit('send message', state.domElements.message.val());
 	state.domElements.message.val('');
@@ -30,8 +30,8 @@ $('#messageForm').submit(function(e){
 //Inicjalizacja
 socket.on('init', function() {
 	state.system.isUserLoggedIn = false;
-	$('#loginModal').modal('show');
-	$('#message').prop('disabled', true);
+	state.domElements.loginModal.modal('show');
+	state.domElements.message.prop('disabled', true);
 	$('#nameCount').html(15 - state.domElements.username.val().length);
 });
 
@@ -44,7 +44,7 @@ socket.on('message', function(data) {
 	$('p.msg').last().fadeIn(250);
 	state.domElements.chat.scrollTop(state.domElements.chat.prop('scrollHeight'));
 	//Powiadomienie w <title>
-	if(!state.system.iswindowActive) {
+	if(!state.system.isWindowActive) {
 		state.system.unreadCounter++;
 		document.title = '(' + state.system.unreadCounter + ') ' + state.consts.title;
 	}

@@ -1,7 +1,7 @@
 import state from './state';
 
 //Licznik znaków w loginie
-state.domElements.username.on("keyup", function() {
+state.domElements.username.on('keyup', function() {
 	$('#nameCount').html(15 - state.domElements.username.val().length);
 });
 
@@ -13,12 +13,12 @@ $('.nav-item').on("click", function() {
 
 //Wykrywanie aktywności okna
 window.addEventListener('focus', function() {
-	state.system.iswindowActive = true;
+	state.system.isWindowActive = true;
 	state.system.unreadCounter = 0;
 	document.title = state.consts.title;
 });
 
 //Wykrywanie nieaktywności okna
 window.addEventListener('blur', function() {
-	state.system.iswindowActive = false;
+	state.system.isWindowActive = false;
 });

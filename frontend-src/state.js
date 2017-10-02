@@ -10,6 +10,8 @@ module.exports = {
 	domElements: {
 		chat: $('#chat'),
 		message: $('#message'),
-		username: $('#username')
+		messageForm: $('#messageForm'),
+		username: $('#username'),
+		loginModal: $('#loginModal')
 	}
 };

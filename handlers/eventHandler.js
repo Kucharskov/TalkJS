@@ -13,10 +13,16 @@ const eventHandler = function(io) {
 		
 		storage.addUser(socket.id);
 		antyspam.addAutor(socket.id);
-		if(!ipguard.addIP(socket.handshake.headers['x-real-ip'])) return;
+		
+		if(!ipguard.addIP(socket.handshake.headers['x-real-ip'])) {
+			socket.emit('message', chat.createMsg(UserSystem, 'Wykryto zbyt wiele połączeń z Twojego adresu IP!', false));
+			storage.removeUser(socket.id);
+			antyspam.removeAutor(socket.id);
+			socket.disconnect();
+		}
 		
 		io.sockets.emit('get users', storage.countAll());
-		
+				
 		//Disconnect
 		socket.on('disconnect', function(data) {
 			console.log('Disconnected: Socket ' + socket.id + 'disconnected!');

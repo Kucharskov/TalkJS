@@ -1,3 +1,5 @@
+import state from './state';
+
 //Licznik znaków w loginie
 state.domElements.username.on("keyup", function() {
   $('#nameCount').html(15 - state.domElements.username.val().length);

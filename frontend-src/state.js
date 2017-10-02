@@ -10,6 +10,6 @@ module.exports = {
   domElements: {
     chat: $('#chat'),
     message: $('#message'),
-    username: $('username')
+    username: $('#username')
   }
 };

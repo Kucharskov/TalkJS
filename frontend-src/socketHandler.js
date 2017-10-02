@@ -44,7 +44,7 @@ socket.on('message', function(data) {
   $('p.msg').last().fadeIn(250);
   state.domElements.chat.scrollTop(state.domElements.chat.prop('scrollHeight'));
   //Powiadomienie w <title>
-  if(!windowActive) {
+  if(!state.system.iswindowActive) {
     state.system.unreadCounter++;
     document.title = '(' + state.system.unreadCounter + ') ' + state.consts.title;
   }

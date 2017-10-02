@@ -60,106 +60,148 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports) {
 
-$(function(){
-	const socket = io.connect('https://talk.kucharskov.pl/');
-	const chat = $('#chat');
-	const message = $('#message');
-	const username = $('#username');
-	const title = "TALK.KUCHARSKOV.PL";
-	let logged = false;
-	let windowActive = true;
-	let unreadCounter = 0;
+module.exports = {
+  consts: {
+    title: 'TALK.KUCHARSKOV.PL'
+  },
+  system: {
+    isUserLoggedIn: false,
+    isWindowActive: true,
+    unreadCounter: 0
+  },
+  domElements: {
+    chat: $('#chat'),
+    message: $('#message'),
+    username: $('#username')
+  }
+};
 
-	//Logowanie
-	$('#loginForm').submit(function(e){
-		e.preventDefault();
-		socket.emit('set user', username.val(), function(data){
-			if(data) {
-				logged = true;
-				$('#loginModal').modal('hide');
-				$('#message').prop('disabled', false);
-			}
-		});
-		username.val('');
-		return false;
-	});
 
-	//Wyslanie wiadomosci
-	$('#messageForm').submit(function(e){
-		e.preventDefault();
-		if(!logged)
-			$('#loginModal').modal('show');
-		else if(message.val().trim() != '')
-			socket.emit('send message', message.val());
-		message.val('');
-		return false;
-	});
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-	//Inicjalizacja
-	socket.on('init', function() {
-		logged = false;
-		$('#loginModal').modal('show');
-		$('#message').prop('disabled', true);
-		$('#nameCount').html(15 - username.val().length);
-	});
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__state__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__socketHandler__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils__ = __webpack_require__(3);
 
-	//Reakcja na wiadomość
-	socket.on('message', function(data) {
-		chat.append(data);
-		//Dodanie timestampa wiadomości
-		$('p.msg').last().tooltip();
-		//Animacja wiadomości
-		$('p.msg').last().fadeIn(250);
-		chat.scrollTop(chat.prop('scrollHeight'));
-		//Powiadomienie w <title>
-		if(!windowActive) {
-			unreadCounter++;
-			document.title = '(' + unreadCounter + ') ' + title;
-		}
-	});
 
-	//Odbieranie listy uzytkowników
-	socket.on('get users', function(counter, userlist) {
-		$('#counter').html(counter);
-		$('#userlist').html(userlist);
-	});
 
-	//Odbieranie błędu logowania
-	socket.on('usererror', function() {
-		username.addClass('border border-danger');
-		username.attr('placeholder', 'Wybierz inną nazwe!');
-		alert('Wybrana nazwa użytkownika aktualnie jest zajęta lub niepoprawna, wybierz inną nazwę aby dołączyć do czatu!');
-	});
 
-	//Licznik znaków w loginie
-	username.on("keyup", function() {
-		$('#nameCount').html(15 - username.val().length);
-	});
 
-	//Chowanie messageForm
-	$('.nav-item').on("click", function() {
-		if($(this).attr('id') == 'nav-chat-tab') $('#messageForm').fadeIn(250);
-		else $('#messageForm').fadeOut(250);
-	});
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-	//Wykrywanie aktywności okna
-	window.addEventListener('focus', function() {
-		windowActive = true;
-		unreadCounter = 0;
-		document.title = title;
-	});
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__state__);
 
-	//Wykrywanie nieaktywności okna
-	window.addEventListener('blur', function() {
-		windowActive = false;
-	});
+
+const socket = io.connect('https://talk.kucharskov.pl/');
+
+//Logowanie
+$('#loginForm').submit(function(e){
+  e.preventDefault();
+  socket.emit('set user', __WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.username.val(), function(data){
+    if(data) {
+      __WEBPACK_IMPORTED_MODULE_0__state___default.a.system.isUserLoggedIn = true;
+      $('#loginModal').modal('hide');
+      $('#message').prop('disabled', false);
+    }
+  });
+  __WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.username.val('');
+  return false;
+});
+
+//Wyslanie wiadomosci
+$('#messageForm').submit(function(e){
+  e.preventDefault();
+  if(!__WEBPACK_IMPORTED_MODULE_0__state___default.a.system.isUserLoggedIn)
+    $('#loginModal').modal('show');
+  else if(__WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.message.val().trim() != '')
+    socket.emit('send message', __WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.message.val());
+  __WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.message.val('');
+  return false;
+});
+
+//Inicjalizacja
+socket.on('init', function() {
+  __WEBPACK_IMPORTED_MODULE_0__state___default.a.system.isUserLoggedIn = false;
+  $('#loginModal').modal('show');
+  $('#message').prop('disabled', true);
+  $('#nameCount').html(15 - __WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.username.val().length);
+});
+
+//Reakcja na wiadomość
+socket.on('message', function(data) {
+  __WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.chat.append(data);
+  //Dodanie timestampa wiadomości
+  $('p.msg').last().tooltip();
+  //Animacja wiadomości
+  $('p.msg').last().fadeIn(250);
+  __WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.chat.scrollTop(__WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.chat.prop('scrollHeight'));
+  //Powiadomienie w <title>
+  if(!__WEBPACK_IMPORTED_MODULE_0__state___default.a.system.iswindowActive) {
+    __WEBPACK_IMPORTED_MODULE_0__state___default.a.system.unreadCounter++;
+    document.title = '(' + __WEBPACK_IMPORTED_MODULE_0__state___default.a.system.unreadCounter + ') ' + __WEBPACK_IMPORTED_MODULE_0__state___default.a.consts.title;
+  }
+});
+
+//Odbieranie listy uzytkowników
+socket.on('get users', function(counter, userlist) {
+  $('#counter').html(counter);
+  $('#userlist').html(userlist);
+});
+
+//Odbieranie błędu logowania
+socket.on('usererror', function() {
+  __WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.username.addClass('border border-danger');
+  __WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.username.attr('placeholder', 'Wybierz inną nazwe!');
+  alert('Wybrana nazwa użytkownika aktualnie jest zajęta lub niepoprawna, wybierz inną nazwę aby dołączyć do czatu!');
+});
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__state__);
+
+
+//Licznik znaków w loginie
+__WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.username.on("keyup", function() {
+  $('#nameCount').html(15 - __WEBPACK_IMPORTED_MODULE_0__state___default.a.domElements.username.val().length);
+});
+
+//Chowanie messageForm
+$('.nav-item').on("click", function() {
+  if($(this).attr('id') == 'nav-chat-tab') $('#messageForm').fadeIn(250);
+  else $('#messageForm').fadeOut(250);
+});
+
+//Wykrywanie aktywności okna
+window.addEventListener('focus', function() {
+  __WEBPACK_IMPORTED_MODULE_0__state___default.a.system.iswindowActive = true;
+  __WEBPACK_IMPORTED_MODULE_0__state___default.a.system.unreadCounter = 0;
+  document.title = __WEBPACK_IMPORTED_MODULE_0__state___default.a.consts.title;
+});
+
+//Wykrywanie nieaktywności okna
+window.addEventListener('blur', function() {
+  __WEBPACK_IMPORTED_MODULE_0__state___default.a.system.iswindowActive = false;
 });
 
 

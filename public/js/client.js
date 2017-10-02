@@ -25,7 +25,7 @@ $(function(){
 		e.preventDefault();
 		if(!logged)
 			$('#loginModal').modal('show');
-		//else if(message.val().trim() != '')
+		else if(message.val().trim() != '')
 			socket.emit('send message', message.val());
 		message.val('');
 		return false;

@@ -1,6 +1,7 @@
 //Utils: storage.js
-let users = [];
 const colors = ['primary', 'secondary', 'success', 'warning', 'info'];
+const maxNameLen = 15;
+let users = [];
 
 function User() {
 	this.username = '';
@@ -9,7 +10,7 @@ function User() {
 }
 
 User.prototype.setUsername = function (username) {
-	let checkname = username.trim().substring(0, 15);
+	let checkname = username.trim().substring(0, maxNameLen);
 
 	for(var user in users)
 		if(users[user].username == checkname) return false;

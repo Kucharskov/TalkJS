@@ -1,6 +1,6 @@
 module.exports = {
   consts: {
-    title: 'TALK.KUCHARSKOV.PL'
+    title: document.title
   },
   system: {
     isUserLoggedIn: false,

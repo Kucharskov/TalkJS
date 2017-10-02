@@ -2,17 +2,19 @@
 const storage = require('../utils/storage');
 const chat = require('../utils/chat');
 const antyspam = require('../utils/antyspam');
+const ipguard = require('../utils/ipguard')
 const UserSystem = storage.createUser("System", "danger");
 
 const eventHandler = function(io) {
 	io.sockets.on('connection', function(socket) {
 		console.log('Connected: Socket connected!');
 		socket.emit('message', chat.createMsg(UserSystem, 'Witaj na czacie. Pamiętaj o zachowaniu kultury!', false));
+		socket.emit('init');
 		
 		storage.addUser(socket.id);
 		antyspam.addAutor(socket.id);
+		if(!ipguard.addIP(socket.handshake.headers['x-real-ip'])) return;
 		
-		socket.emit('init');
 		io.sockets.emit('get users', storage.countAll());
 		
 		//Disconnect
@@ -25,6 +27,7 @@ const eventHandler = function(io) {
 			
 			storage.removeUser(socket.id);
 			antyspam.removeAutor(socket.id);
+			ipguard.removeIP(socket.handshake.headers['x-real-ip']);
 		});
 
 		//User set

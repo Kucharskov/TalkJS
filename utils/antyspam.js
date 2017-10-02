@@ -1,10 +1,10 @@
 //Utils: antyspam.js
-let messages = []
-let timestamps = []
-let date = new Date();
+let messages = [];
+let timestamps = [];
 
 module.exports = {
 	addAutor: function(id) {
+		let date = new Date();
 		messages[id] = "";
 		timestamps[id] = date.getTime();
 	},
@@ -17,11 +17,12 @@ module.exports = {
 	test: function(id, message) {
 		if(messages[id] === message) return false;
 		else {
+			let date = new Date();
 			if(date.getTime() - timestamps[id] > 700) {
-				timestamps[id] = timestamp;
+				timestamps[id] = date.getTime();
 				messages[id] = message;
 				return true;
-			} else return false;
+			} else return ;
 		}
 	}
 };

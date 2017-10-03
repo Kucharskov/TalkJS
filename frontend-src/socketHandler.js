@@ -21,7 +21,7 @@ $('#messageForm').submit(function(e){
 	e.preventDefault();
 	if(!state.system.isUserLoggedIn)
 		state.domElements.loginModal.modal('show');
-	else if(state.domElements.message.val().trim() != '')
+	else if(state.domElements.message.val().trim() !== '')
 		socket.emit('send message', state.domElements.message.val());
 	state.domElements.message.val('');
 	return false;
@@ -47,7 +47,7 @@ socket.on('message', function(data) {
 			state.domElements.message.val(state.domElements.message.val() + '@' + $(this).html() + ' ');
 	});
 	//Animacja wiadomości
-	$('p.msg').last().fadeIn(250);
+	$('p.msg').last().fadeIn(state.system.animationTime);
 	state.domElements.chat.scrollTop(state.domElements.chat.prop('scrollHeight'));
 	//Powiadomienie w <title>
 	if(!state.system.isWindowActive) {
@@ -64,7 +64,7 @@ socket.on('get users', function(counter, userlist) {
 
 //Odbieranie błędu logowania
 socket.on('usererror', function() {
-	state.domElements.username.addClass('border border-danger');
+	state.domElements.username.addClass('is-invalid');
 	state.domElements.username.prop('placeholder', 'Wybierz inną nazwe!');
 	alert('Wybrana nazwa użytkownika aktualnie jest zajęta lub niepoprawna, wybierz inną nazwę aby dołączyć do czatu!');
 });

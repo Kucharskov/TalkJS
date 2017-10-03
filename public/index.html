@@ -48,15 +48,36 @@
 							<nav class="nav nav-tabs card-header-tabs" id="nav" role="tablist">
 								<a class="nav-item nav-link active" id="nav-chat-tab" data-toggle="tab" href="#nav-chat" role="tab" aria-controls="nav-chat" aria-expanded="true">Czat</a>
 								<a class="nav-item nav-link" id="nav-users-tab" data-toggle="tab" href="#nav-users" role="tab" aria-controls="nav-users">Użytkownicy</a>
+								<a class="nav-item nav-link" id="nav-settings-tab" data-toggle="tab" href="#nav-settings" role="tab" aria-controls="nav-settings">Ustawienia</a>
 							</nav>
 						</div>
-						<div class="card-body tab-content" id="nav-tabContent">
+						<div class="card-body tab-content">
 							<div class="tab-pane fade show active" id="nav-chat" role="tabpanel" aria-labelledby="nav-chat-tab">
 								<div id="chat"></div>
 							</div>
 							<div class="tab-pane fade" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
 								<p class="h5">Lista zalogowanych użytkowników</p>
 								<div id="userlist"></div>
+							</div>
+							<div class="tab-pane fade" id="nav-settings" role="tabpanel" aria-labelledby="nav-settings-tab">
+								<p class="h5">Ustawienia użytkownika</p>
+								<form id="settingsForm">
+									<div class="form-check">
+										<label class="form-check-label">
+											<input class="form-check-input" type="checkbox" id="showAnimations" value="">
+											Animacje oknca czatu i wiadomości
+										</label>
+									</div>
+									<div class="form-check">
+										<label class="form-check-label">
+											<input class="form-check-input" type="checkbox" id="noticeTitle" value="">
+											Powiadomienia o nieprzeczytanych wiadomościach
+										</label>
+									</div>
+									<div class="text-right">
+										<button type="submit" class="btn btn-primary">Zapisz!</button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>

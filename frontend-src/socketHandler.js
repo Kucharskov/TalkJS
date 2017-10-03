@@ -21,7 +21,7 @@ $('#messageForm').submit(function(e){
 	e.preventDefault();
 	if(!state.system.isUserLoggedIn)
 		state.domElements.loginModal.modal('show');
-	else if(state.domElements.message.val().trim() != '')
+	else if(state.domElements.message.val().trim() !== '')
 		socket.emit('send message', state.domElements.message.val());
 	state.domElements.message.val('');
 	return false;

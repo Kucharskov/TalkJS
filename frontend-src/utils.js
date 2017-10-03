@@ -7,7 +7,7 @@ state.domElements.username.on('keyup', function() {
 
 //Chowanie messageForm
 $('.nav-item').on("click", function() {
-	if($(this).prop('id') == 'nav-chat-tab') $('#messageForm').fadeIn(250);
+	if($(this).prop('id') === 'nav-chat-tab') $('#messageForm').fadeIn(250);
 	else $('#messageForm').fadeOut(250);
 });
 

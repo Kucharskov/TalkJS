@@ -7,6 +7,10 @@ module.exports = {
 		isWindowActive: true,
 		unreadCounter: 0
 	},
+	settings: {
+		showAnimations: true,
+		noticeTitle: true
+	},
 	domElements: {
 		chat: $('#chat'),
 		message: $('#message'),

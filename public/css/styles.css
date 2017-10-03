@@ -29,10 +29,6 @@ p.msg {
     display: none;
 }
 
-p.msg span.badge:not(.badge-danger) {
-	cursor: pointer;
-}
-
-.form-check-label{
+p.msg span.badge:not(.badge-danger), .form-check-label {
 	cursor: pointer;
 }

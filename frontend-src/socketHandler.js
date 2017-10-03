@@ -64,7 +64,7 @@ socket.on('get users', function(counter, userlist) {
 
 //Odbieranie błędu logowania
 socket.on('usererror', function() {
-	state.domElements.username.addClass('border border-danger');
+	state.domElements.username.addClass('is-invalid');
 	state.domElements.username.prop('placeholder', 'Wybierz inną nazwe!');
 	alert('Wybrana nazwa użytkownika aktualnie jest zajęta lub niepoprawna, wybierz inną nazwę aby dołączyć do czatu!');
 });

@@ -5,7 +5,12 @@ module.exports = {
 	system: {
 		isUserLoggedIn: false,
 		isWindowActive: true,
+		animationTime: 250,
 		unreadCounter: 0
+	},
+	settings: {
+		showAnimations: true,
+		noticeTitle: true
 	},
 	domElements: {
 		chat: $('#chat'),

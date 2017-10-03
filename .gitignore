@@ -48,3 +48,6 @@ Temporary Items
 
 # Node modules
 node_modules
+
+# Generated JS file
+/public/js/bundle.js

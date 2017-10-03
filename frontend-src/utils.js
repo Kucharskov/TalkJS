@@ -33,11 +33,10 @@ $(window).on('load', function() {
 });
 
 //Zapisywanie ustawień z formularza
-$('#settingsForm').submit(function(e){
-	e.preventDefault();
+$('.settings-checkbox').on('click', function(e){
 	state.settings.showAnimations = $('#showAnimations').prop('checked');
 	state.settings.noticeTitle = $('#noticeTitle').prop('checked');
-	
+
 	if(!state.settings.showAnimations) {
 		$('.modal').removeClass('fade');
 		$('.tab-pane').removeClass('fade');
@@ -48,6 +47,4 @@ $('#settingsForm').submit(function(e){
 		$('.tab-pane.active').addClass('show');
 		state.system.animationTime = 250;
 	}
-	
-	return false;
 });

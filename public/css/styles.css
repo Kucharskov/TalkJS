@@ -32,3 +32,7 @@ p.msg {
 p.msg span.badge:not(.badge-danger) {
 	cursor: pointer;
 }
+
+.form-check-label{
+	cursor: pointer;
+}

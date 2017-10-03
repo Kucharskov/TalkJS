@@ -22,3 +22,17 @@ $(window).on('focus', function() {
 $(window).on('blur', function() {
 	state.system.isWindowActive = false;
 });
+
+//Ładowanie formularza z ustawieniami
+$(window).on('load', function() {
+	$('#showAnimations').prop('checked', state.settings.showAnimations);
+	$('#noticeTitle').prop('checked', state.settings.noticeTitle);
+});
+
+//Zapisywanie ustawień z formularza
+$('#settingsForm').submit(function(e){
+	e.preventDefault();
+	state.settings.showAnimations = $('#showAnimations').prop('checked');
+	state.settings.noticeTitle = $('#noticeTitle').prop('checked');	
+	return false;
+});

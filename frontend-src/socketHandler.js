@@ -47,7 +47,7 @@ socket.on('message', function(data) {
 			state.domElements.message.val(state.domElements.message.val() + '@' + $(this).html() + ' ');
 	});
 	//Animacja wiadomości
-	$('p.msg').last().fadeIn(250);
+	$('p.msg').last().fadeIn(state.system.animationTime);
 	state.domElements.chat.scrollTop(state.domElements.chat.prop('scrollHeight'));
 	//Powiadomienie w <title>
 	if(!state.system.isWindowActive) {

@@ -48,6 +48,7 @@ Temporary Items
 
 # Node modules
 node_modules
+npm-debug.log
 
 # Generated JS file
 /public/js/bundle.js

@@ -35,7 +35,7 @@ function generateTime() {
 
 module.exports = {
 	createMsg: function(author, message, escape = true) {		
-		message = (escape) ? linkify(escapeText(message)) : linkify(message);
+		message = (escape) ? linkify(escapeText(message)) : message;
 		return '<p class="m-0 msg" data-toggle="tooltip" data-placement="right" title="' + generateTime()  + '"><span class="badge badge-' + author.color + '">' + author.username + '</span> ' + message + '</p>';
 	},
 

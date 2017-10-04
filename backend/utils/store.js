@@ -1,4 +1,5 @@
 const consts = require('./consts');
+const functions = require('../utils/functions');
 let User = require('../models/user');
 let users = [];
 
@@ -23,10 +24,11 @@ module.exports = {
 	},
 
 	setUsername: function(id, username) {
+		if(username.trim() === '') return false;
 		for(var user in users)
-			if(users[user].username == username) return false;
-
-		if(users[id]) return users[id].setUsername(username);
+			if(users[user].username === functions.escapeText(username)) return false;
+		if(users[id]) users[id].setUsername(username);
+		return true;
 	},
 
 	setColor: function(id, color) {
@@ -45,9 +47,8 @@ module.exports = {
 
 	getUsers: function() {
 		let userlist = '';
-		for(var user in users) {
+		for(var user in users)
 			if(users[user].logged) userlist += '<span class="badge badge-' + users[user].color + '">' + users[user].username + '</span> ';
-		}
 		return (userlist === '') ? '<p class="text-danger m-0">Czat pusty</p>' : userlist;
 	}
 };

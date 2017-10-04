@@ -49,11 +49,10 @@ const eventHandler = function(io) {
 		//Send Message
 		socket.on('send message', function(message) {
 			const user = store.findUser(socket.id);
-			message = message.toString();
-			message = message.trim();
+			message = message.toString().trim();
 			if(message != "") {
 				if(!antyspam.test(socket.id, message)) socket.emit('message', UserSystem.createMsg('<span class="text-danger">Nie powtarzaj się oraz nie rozsyłaj SPAMu!</span>', false));
-				else if(user.logged) io.sockets.emit('message', store.findUser(socket.id).createMsg(message, true));
+				else if(user.logged) io.sockets.emit('message', user.createMsg(message, true));
 			}
 		});
 	});

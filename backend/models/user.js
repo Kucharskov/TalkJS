@@ -7,15 +7,9 @@ function User() {
 	this.logged = false;
 }
 
-User.prototype.setUsername = function(username) {
-	let checkname = username.trim().substring(0, consts.maxNameLen);
-	
-	if(checkname === '') return false;
-	else {
-		this.username = functions.escapeText(checkname);
-		this.logged = true;
-		return true;
-	}
+User.prototype.setUsername = function(username) {	
+	this.username = functions.escapeText(username);
+	this.logged = true;
 }
 
 User.prototype.setColor = function(color) {

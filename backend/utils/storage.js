@@ -2,7 +2,6 @@
 const consts = require('../config/consts');
 let User = require('../models/user');
 
-const colors = ['primary', 'secondary', 'success', 'warning', 'info'];
 let users = [];
 
 
@@ -28,6 +27,9 @@ module.exports = {
 	},
 
 	setUsername: function(id, username) {
+		for(var user in users)
+			if(users[user].username == username) return false;
+			
 		if(users[id]) return users[id].setUsername(username);
 	},
 

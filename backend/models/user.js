@@ -1,3 +1,6 @@
+let colors = require('../config/colors');
+const consts = require('../config/consts');
+
 function User() {
 	this.username = '';
 	this.color = colors[Math.floor(Math.random()*colors.length)];
@@ -6,9 +9,6 @@ function User() {
 
 User.prototype.setUsername = function (username) {
 	let checkname = username.trim().substring(0, consts.maxNameLen);
-
-	for(var user in users)
-		if(users[user].username == checkname) return false;
 
 	this.username = checkname;
 	this.logged = true;

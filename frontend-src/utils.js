@@ -33,12 +33,9 @@ $('.settings-checkbox').on('click', function(e){
 
 	if(!state.settings.showAnimations) {
 		$('.modal').removeClass('fade');
-		$('.tab-pane').removeClass('fade');
 		state.system.animationTime = 0;
 	} else {
 		$('.modal').addClass('fade');
-		$('.tab-pane').addClass('fade');
-		$('.tab-pane.active').addClass('show');
 		state.system.animationTime = 250;
 	}
 });

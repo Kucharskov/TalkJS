@@ -1,5 +1,6 @@
 const store = require('../utils/store');
 const chat = require('../utils/chat');
+const functions = require('../utils/functions');
 const antyspam = require('../utils/antyspam');
 const ipguard = require('../utils/ipguard')
 const UserSystem = store.createUser("System", "danger");
@@ -38,7 +39,7 @@ const eventHandler = function(io) {
 		//User set
 		socket.on('set user', function(username, callback) {
 			if(!(callback instanceof Function)) return;
-			if(store.setUsername(socket.id, chat.escapeText(username.toString()))) {
+			if(store.setUsername(socket.id, functions.escapeText(username.toString()))) {
 				callback(true);
 				
 				const user = store.findUser(socket.id);

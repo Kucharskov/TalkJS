@@ -14,90 +14,10 @@
 			<div class="col-xl-6 col-lg-8 col-md-10 col-12 mb-5">
 				<h1 class="text-center">TALK.KUCHARSKOV.PL</h1>
 
-				<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<form id="loginForm">
-							<div class="modal-content">
-								<div class="modal-header">
-									<p class="h5 modal-title" id="loginModalLabel">Dołącz do czatu!</p>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body text-justify">
-									<p>Klikając poniżej "Dołącz!" akceptujesz ogólnie przyjęte zasady netykiety i oświadczasz, że będziesz się do nich stosować.</p>
-
-									<div class="input-group mb-3">
-										<input id="username" type="text" class="form-control" placeholder="Nazwa użytkownika" aria-label="Nazwa użytkownika" maxlength="15" autocomplete="off">
-										<span class="input-group-addon" id="nameCount">15</span>
-									</div>
-									<p>Wchodząc na czat przyjmujesz do wiadomości to, że może tu nikogo nie być, a czat może działać dziwnie (bądź też wcale).</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Wejdź jako gość</button>
-									<button class="btn btn-primary" type="submit">Dołącz!</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-
-				<div class="col-12">
-					<div class="card">
-						<div class="card-header">
-							<nav class="nav nav-tabs nav-fill card-header-tabs" id="nav" role="tablist">
-								<a class="nav-item nav-link active" id="nav-chat-tab" data-toggle="tab" href="#nav-chat" role="tab" aria-controls="nav-chat" aria-expanded="true">Czat</a>
-								<a class="nav-item nav-link" id="nav-users-tab" data-toggle="tab" href="#nav-users" role="tab" aria-controls="nav-users">Użytkownicy</a>
-								<a class="nav-item nav-link" id="nav-settings-tab" data-toggle="tab" href="#nav-settings" role="tab" aria-controls="nav-settings">Ustawienia</a>
-							</nav>
-						</div>
-						<div class="card-body tab-content">
-							<div class="tab-pane fade show active" id="nav-chat" role="tabpanel" aria-labelledby="nav-chat-tab">
-								<div id="chat"></div>
-							</div>
-							<div class="tab-pane fade" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
-								<p class="h5">Lista zalogowanych użytkowników</p>
-								<div id="userlist"></div>
-							</div>
-							<div class="tab-pane fade" id="nav-settings" role="tabpanel" aria-labelledby="nav-settings-tab">
-								<p class="h5">Ustawienia użytkownika</p>
-								<div class="form-check">
-									<label class="form-check-label">
-										<input class="form-check-input settings-checkbox" type="checkbox" id="showAnimations" value="">
-										Animacje okna czatu i wiadomości
-									</label>
-								</div>
-								<div class="form-check">
-									<label class="form-check-label">
-										<input class="form-check-input settings-checkbox" type="checkbox" id="noticeTitle" value="">
-										Powiadomienia o nieprzeczytanych wiadomościach
-									</label>
-								</div>
-								<p class="text-secondary text-center m-0">Ustawienia są automatycznie zapisywane.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-12 mt-2">
-					<form id="messageForm">
-						<div class="input-group">
-							<input id="message" type="text" class="form-control" placeholder="Wiadomość..." aria-label="Wiadomość..." autocomplete="off" disabled>
-							<span class="input-group-btn">
-								<button class="btn btn-success" type="submit">Wyślij!</button>
-							</span>
-						</div>
-					</form>
-				</div>
+				
 			</div>
 		</div>
 	</div>
-
-	<footer class="footer" id="footer">
-		<div class="container">
-			<p class="text-muted text-center m-0">Użytkownicy online: <span id="counter">NaN</span></p>
-		</div>
-	</footer>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>

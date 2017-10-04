@@ -14,3 +14,11 @@ main {
 	overflow: auto;
 }
 
+p.msg {
+    display: none;
+}
+
+span.badge:not(.badge-danger), .form-check-label {
+	cursor: pointer;
+}
+

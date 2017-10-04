@@ -8,14 +8,14 @@ const UserSystem = storage.createUser("System", "danger");
 const eventHandler = function(io) {
 	io.sockets.on('connection', function(socket) {
 		console.log('Connected: Socket ' + socket.id + 'connected!');
-		socket.emit('message', chat.createMsg(UserSystem, 'Witaj na czacie. Pamiętaj o zachowaniu kultury!', false));
+		socket.emit('message', chat.createMsg(UserSystem, '<span class="text-secondary">Witaj na czacie. Pamiętaj o zachowaniu kultury!</span>', false));
 		socket.emit('init');
 				
 		if(ipguard.addIP(socket.handshake.headers['x-real-ip'])) {
 			storage.addUser(socket.id);
 			antyspam.addAutor(socket.id);
 		} else {
-			socket.emit('message', chat.createMsg(UserSystem, 'Wykryto zbyt wiele połączeń z Twojego adresu IP!', false));
+			socket.emit('message', chat.createMsg(UserSystem, '<span class="text-danger">Wykryto zbyt wiele połączeń z Twojego adresu IP!</span>', false));
 			ipguard.removeIP(socket.handshake.headers['x-real-ip']);
 			socket.disconnect();
 		}
@@ -27,7 +27,7 @@ const eventHandler = function(io) {
 			console.log('Disconnected: Socket ' + socket.id + 'disconnected!');
 			
 			const user = storage.findUser(socket.id);
-			if(user.logged) io.sockets.emit('message', chat.createMsg(UserSystem, 'Użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong> pożegnał się z nami!', false));
+			if(user.logged) io.sockets.emit('message', chat.createMsg(UserSystem, '<span class="text-secondary">Użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong> pożegnał się z nami!</span>', false));
 			
 			storage.removeUser(socket.id);
 			antyspam.removeAutor(socket.id);
@@ -44,7 +44,7 @@ const eventHandler = function(io) {
 				
 				const user = storage.findUser(socket.id);
 				io.sockets.emit('get users', storage.countAll(), storage.getUsers());
-				io.sockets.emit('message', chat.createMsg(UserSystem, 'Dołączył do nas użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong>!', false));
+				io.sockets.emit('message', chat.createMsg(UserSystem, '<span class="text-secondary">Dołączył do nas użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong>!</span>', false));
 			} else socket.emit('usererror');
 		});
 
@@ -53,7 +53,7 @@ const eventHandler = function(io) {
 			const user = storage.findUser(socket.id);
 			message = message.trim();
 			if(message != "") {
-				if(!antyspam.test(socket.id, message)) socket.emit('message', chat.createMsg(UserSystem, 'Nie powtarzaj się oraz nie rozsyłaj SPAMu!', false));
+				if(!antyspam.test(socket.id, message)) socket.emit('message', chat.createMsg(UserSystem, '<span class="text-danger">Nie powtarzaj się oraz nie rozsyłaj SPAMu!</span>', false));
 				else if(user.logged) io.sockets.emit('message', chat.createMsg(storage.findUser(socket.id), message, true));
 			}
 		});

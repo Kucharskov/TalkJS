@@ -11,7 +11,9 @@ main {
 }
 
 .card-body {
-	overflow: auto;
+	height: 1px; /* Dziki trick, to trzeba jakoś naprawić */
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .autosize {

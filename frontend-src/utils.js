@@ -5,12 +5,6 @@ state.domElements.username.on('keyup', function() {
 	$('#nameCount').html(15 - state.domElements.username.val().length);
 });
 
-//Chowanie messageForm
-$('.nav-item').on("click", function() {
-	if($(this).prop('id') === 'nav-chat-tab') $('#messageForm').fadeIn(state.system.animationTime);
-	else $('#messageForm').fadeOut(state.system.animationTime);
-});
-
 //Wykrywanie aktywności okna
 $(window).on('focus', function() {
 	if(state.settings.noticeTitle) {

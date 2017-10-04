@@ -1,6 +1,7 @@
 module.exports = {
 	consts: {
-		title: document.title
+		title: document.title,
+		audio: new Audio("mp3/notification.mp3")
 	},
 	system: {
 		isUserLoggedIn: false,
@@ -10,7 +11,8 @@ module.exports = {
 	},
 	settings: {
 		showAnimations: true,
-		noticeTitle: true
+		noticeTitle: true,
+		noticeSound: false
 	},
 	domElements: {
 		chat: $('#chat'),

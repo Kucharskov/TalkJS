@@ -24,12 +24,14 @@ $(window).on('blur', function() {
 $(window).on('load', function() {
 	$('#showAnimations').prop('checked', state.settings.showAnimations);
 	$('#noticeTitle').prop('checked', state.settings.noticeTitle);
+	$('#noticeSound').prop('checked', state.settings.noticeSound);
 });
 
 //Zapisywanie ustawień z formularza
 $('.settings-checkbox').on('click', function(e){
 	state.settings.showAnimations = $('#showAnimations').prop('checked');
 	state.settings.noticeTitle = $('#noticeTitle').prop('checked');
+	state.settings.noticeSound = $('#noticeSound').prop('checked');
 
 	if(!state.settings.showAnimations) {
 		$('.modal').removeClass('fade');

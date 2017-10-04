@@ -54,6 +54,9 @@ socket.on('message', function(data) {
 		state.system.unreadCounter++;
 		document.title = '(' + state.system.unreadCounter + ') ' + state.consts.title;
 	}
+	//Odtworzenie powiadomienia dźwiękowego
+	if(state.settings.noticeSound)
+		state.consts.audio.play();
 });
 
 //Odbieranie listy uzytkowników

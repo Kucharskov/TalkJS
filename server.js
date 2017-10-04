@@ -11,7 +11,8 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/public/index.html');
 });
-app.get('/admin', function(req, res) {
-	res.send('Hello World!');
-});
+//Srać routery, tak se dodam i też działa
+//app.get('/admin', function(req, res) {
+//	res.send('Hello World!');
+//});
 eventHandler(io);

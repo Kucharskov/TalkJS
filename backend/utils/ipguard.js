@@ -1,4 +1,4 @@
-const consts = require('../config/consts');
+const consts = require('./consts');
 let iplist = [];
 
 module.exports = {

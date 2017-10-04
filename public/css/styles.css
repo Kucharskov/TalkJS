@@ -22,3 +22,9 @@ span.badge:not(.badge-danger), .form-check-label {
 	cursor: pointer;
 }
 
+@media (max-width: 768px) {
+	.hidden {
+		display: none;
+	}
+}
+

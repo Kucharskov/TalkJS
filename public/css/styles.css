@@ -41,6 +41,10 @@ span.badge:not(.badge-danger), .form-check-label, #settingsCog {
 }
 
 @media (max-width: 768px) {
+	main {
+		min-height: 85vh;
+	}
+	
 	.hidden {
 		display: none;
 	}

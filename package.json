@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-chat",
+  "name": "talkjs",
   "version": "1.0.0",
   "description": "Simple chat app",
   "main": "app.js",

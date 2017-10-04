@@ -10,6 +10,7 @@ $('#loginForm').submit(function(e){
 			state.system.isUserLoggedIn = true;
 			state.domElements.loginModal.modal('hide');
 			state.domElements.message.prop('disabled', false);
+			state.domElements.message.focus();
 		}
 	});
 	state.domElements.username.val('');
@@ -24,6 +25,7 @@ $('#messageForm').submit(function(e){
 	else if(state.domElements.message.val().trim() !== '')
 		socket.emit('send message', state.domElements.message.val());
 	state.domElements.message.val('');
+	state.domElements.message.focus();
 	return false;
 });
 
@@ -40,11 +42,13 @@ socket.on('message', function(data) {
 	state.domElements.chat.append(data);
 	//Dodanie timestampa wiadomości
 	$('p.msg').last().tooltip();
-	//Dodawanie klikalnego nicku - wymaga odbindowania aby nie nakłądać bindów
+	//Dodawanie klikalnego nicku - wymaga odbindowania aby nie nakładać bindów
 	$('span.badge:not(.badge-danger)').unbind('click');
 	$('span.badge:not(.badge-danger)').on('click', function() {
-		if(state.system.isUserLoggedIn)
+		if(state.system.isUserLoggedIn) {
 			state.domElements.message.val(state.domElements.message.val() + '@' + $(this).html() + ' ');
+			state.domElements.message.focus();
+		}
 	});
 	//Animacja wiadomości
 	$('p.msg').last().fadeIn(state.system.animationTime);

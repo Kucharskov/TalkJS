@@ -1,28 +1,6 @@
-//Utils: storage.js
-const colors = ['primary', 'secondary', 'success', 'warning', 'info'];
-const maxNameLen = 15;
+const consts = require('../config/consts');
+let User = require('../models/user');
 let users = [];
-
-function User() {
-	this.username = '';
-	this.color = colors[Math.floor(Math.random()*colors.length)];
-	this.logged = false;
-}
-
-User.prototype.setUsername = function (username) {
-	let checkname = username.trim().substring(0, maxNameLen);
-
-	for(var user in users)
-		if(users[user].username == checkname) return false;
-
-	this.username = checkname;
-	this.logged = true;
-	return true;
-}
-
-User.prototype.setColor = function (color) {
-	this.color = color;
-}
 
 module.exports = {
 	addUser: function(id) {
@@ -45,6 +23,9 @@ module.exports = {
 	},
 
 	setUsername: function(id, username) {
+		for(var user in users)
+			if(users[user].username == username) return false;
+
 		if(users[id]) return users[id].setUsername(username);
 	},
 

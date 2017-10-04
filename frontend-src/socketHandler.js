@@ -41,8 +41,8 @@ socket.on('message', function(data) {
 	//Dodanie timestampa wiadomości
 	$('p.msg').last().tooltip();
 	//Dodawanie klikalnego nicku - wymaga odbindowania aby nie nakłądać bindów
-	$('p.msg span.badge:not(.badge-danger)').unbind('click');
-	$('p.msg span.badge:not(.badge-danger)').on('click', function() {
+	$('span.badge:not(.badge-danger)').unbind('click');
+	$('span.badge:not(.badge-danger)').on('click', function() {
 		if(state.system.isUserLoggedIn)
 			state.domElements.message.val(state.domElements.message.val() + '@' + $(this).html() + ' ');
 	});

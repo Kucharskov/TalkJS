@@ -3,7 +3,7 @@ h1 {
 }
 
 main {
-	min-height: 55vh;
+	min-height: 70vh;
 }
 
 .card {
@@ -42,7 +42,7 @@ span.badge:not(.badge-danger), .form-check-label, #settingsCog {
 
 @media (max-width: 768px) {
 	main {
-		min-height: 85vh;
+		min-height: 90vh;
 	}
 	
 	.hidden {

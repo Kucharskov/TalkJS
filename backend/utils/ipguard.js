@@ -1,6 +1,5 @@
-//Utils: ipguard.js
+const consts = require('../config/consts');
 let iplist = [];
-let consts = require('../config/consts');
 
 module.exports = {
 	addIP: function(ip) {

@@ -1,10 +1,6 @@
-//Utils: storage.js
 const consts = require('../config/consts');
 let User = require('../models/user');
-
 let users = [];
-
-
 
 module.exports = {
 	addUser: function(id) {

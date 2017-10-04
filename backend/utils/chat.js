@@ -1,4 +1,3 @@
-//Utils: chatUtils.js
 //Funkcja do escapeowania tekstu
 function escapeText(text) {
 	var map = {

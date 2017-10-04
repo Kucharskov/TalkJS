@@ -1,9 +1,8 @@
-let colors = require('../config/colors');
 const consts = require('../config/consts');
 
 function User() {
 	this.username = '';
-	this.color = colors[Math.floor(Math.random()*colors.length)];
+	this.color = consts.colors[Math.floor(Math.random()*consts.colors.length)];
 	this.logged = false;
 }
 

@@ -1,5 +1,4 @@
-//Utils: antyspam.js
-let consts = require('../config/consts');
+const consts = require('../config/consts');
 let messages = [];
 let timestamps = [];
 

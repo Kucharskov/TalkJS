@@ -29,7 +29,7 @@ module.exports = {
 	setUsername: function(id, username) {
 		for(var user in users)
 			if(users[user].username == username) return false;
-			
+
 		if(users[id]) return users[id].setUsername(username);
 	},
 

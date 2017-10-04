@@ -43,8 +43,37 @@
 				<h1 class="text-center">TALK.KUCHARSKOV.PL</h1>
 			</div>
 			<div class="col-xl-10 col-12 mt-3">
+				<main class="d-flex flex-wrap">
+					<div class="order-2 d-flex col-md-9 col-12 p-0">
+						<div class="d-flex flex-column flex-nowrap align-items-stretch col-12 p-0">
+							<div class="order-1 align-self-start col-12 p-0" style="flex: 11 0 0;">
+								<div class="card">
+									<div class="card-header text-center">Czat</div>
+									<div class="card-body" id="chat"></div>
+								</div>
+							</div>
+							
+							<div class="order-2 align-self-end col-12 p-0 mt-3" style="flex: 1 0 0;">
+								<form id="messageForm">
+									<div class="input-group">
+										<input id="message" type="text" class="form-control" placeholder="Wiadomość..." aria-label="Wiadomość..." autocomplete="off" disabled>
+										<span class="input-group-btn">
+											<button class="btn btn-success" type="submit">Wyślij!</button>
+										</span>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 
-				
+					<div class="order-1 col-3 pl-0 hidden">
+						<div class="card">
+							<p class="card-header text-center">Użytkownicy</p>
+							<div class="card-body" id="userlist"></div>
+							<div class="card-footer text-muted text-center">Online: <span id="counter">NaN</span></div>
+						</div>
+					</div>
+				</main>
 			</div>
 		</div>
 	</div>

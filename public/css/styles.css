@@ -1,0 +1,12 @@
+main {
+	min-height: 55vh;
+}
+
+.card {
+	height: 100%;
+}
+
+.card-body {
+	overflow: auto;
+}
+

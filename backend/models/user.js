@@ -6,7 +6,7 @@ function User() {
 	this.logged = false;
 }
 
-User.prototype.setUsername = function (username) {
+User.prototype.setUsername = function(username) {
 	let checkname = username.trim().substring(0, consts.maxNameLen);
 
 	this.username = checkname;
@@ -14,7 +14,7 @@ User.prototype.setUsername = function (username) {
 	return true;
 }
 
-User.prototype.setColor = function (color) {
+User.prototype.setColor = function(color) {
 	this.color = color;
 }
 

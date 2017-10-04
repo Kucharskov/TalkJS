@@ -6,10 +6,11 @@ const UserSystem = store.createUser("System", "danger");
 
 const eventHandler = function(io) {
 	io.sockets.on('connection', function(socket) {
+		//Connect
 		console.log('Connected: Socket ' + socket.id + 'connected!');
 		socket.emit('message', chat.createMsg(UserSystem, '<span class="text-secondary">Witaj na czacie. Pamiętaj o zachowaniu kultury!</span>', false));
 		socket.emit('init');
-				
+
 		if(ipguard.addIP(socket.handshake.headers['x-real-ip'])) {
 			store.addUser(socket.id);
 			antyspam.addAutor(socket.id);
@@ -18,9 +19,8 @@ const eventHandler = function(io) {
 			ipguard.removeIP(socket.handshake.headers['x-real-ip']);
 			socket.disconnect();
 		}
-		
 		io.sockets.emit('get users', store.countAll(), store.getUsers());
-				
+
 		//Disconnect
 		socket.on('disconnect', function(data) {
 			console.log('Disconnected: Socket ' + socket.id + 'disconnected!');

@@ -1,10 +1,10 @@
 module.exports = {
 	colors: [
-		'primary',
-		'secondary',
-		'success',
-		'warning',
-		'info'
+		'primary',		//Niebieski
+		'secondary',	//Szary
+		'success',		//Zielony
+		'warning',		//Zółty
+		'info'			//Morski(?)
 	],
 	maxNameLen: 15,
 	perIPlimit: 3,

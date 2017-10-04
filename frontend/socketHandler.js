@@ -1,5 +1,4 @@
 import state from './state';
-
 const socket = io.connect('https://talk.kucharskov.pl/');
 
 //Logowanie

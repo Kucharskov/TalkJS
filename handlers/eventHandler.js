@@ -39,7 +39,7 @@ const eventHandler = function(io) {
 		//User set
 		socket.on('set user', function(username, callback) {
 			if(!(callback instanceof Function)) return;
-			if(storage.setUsername(socket.id, chat.escapeText(username))) {
+			if(storage.setUsername(socket.id, chat.escapeText(username.toString()))) {
 				callback(true);
 				
 				const user = storage.findUser(socket.id);
@@ -51,6 +51,7 @@ const eventHandler = function(io) {
 		//Send Message
 		socket.on('send message', function(message) {
 			const user = storage.findUser(socket.id);
+			message = message.toString();
 			message = message.trim();
 			if(message != "") {
 				if(!antyspam.test(socket.id, message)) socket.emit('message', chat.createMsg(UserSystem, '<span class="text-danger">Nie powtarzaj się oraz nie rozsyłaj SPAMu!</span>', false));

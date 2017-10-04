@@ -14,11 +14,23 @@ main {
 	overflow: auto;
 }
 
+#settingsCog {
+	width: 16px;
+	height: 16px;
+	margin-top: 4px;
+	float: right;
+	background: url('../img/settings.png') center center no-repeat;
+}
+
+#settingsCog:hover {
+	background: url('../img/settings_hover.png') center center no-repeat;
+}
+
 p.msg {
     display: none;
 }
 
-span.badge:not(.badge-danger), .form-check-label {
+span.badge:not(.badge-danger), .form-check-label, #settingsCog {
 	cursor: pointer;
 }
 
@@ -27,4 +39,3 @@ span.badge:not(.badge-danger), .form-check-label {
 		display: none;
 	}
 }
-

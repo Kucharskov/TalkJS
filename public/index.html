@@ -48,7 +48,7 @@
 						<div class="d-flex flex-column flex-nowrap align-items-stretch col-12 p-0">
 							<div class="order-1 align-self-start col-12 p-0" style="flex: 11 0 0;">
 								<div class="card">
-									<div class="card-header text-center">Czat</div>
+									<div class="card-header text-center">Czat <span id="settingsCog"></span></div>
 									<div class="card-body" id="chat"></div>
 								</div>
 							</div>
@@ -74,6 +74,35 @@
 						</div>
 					</div>
 				</main>
+				  
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<p class="h5 modal-title" id="settingsModalLabel">Ustawienia użytkownika</p>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Zamknij">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-check">
+						<label class="form-check-label">
+							<input class="form-check-input settings-checkbox" type="checkbox" id="showAnimations" value="">
+							Animacje okna czatu i wiadomości
+						</label>
+					</div>
+					<div class="form-check">
+						<label class="form-check-label">
+							<input class="form-check-input settings-checkbox" type="checkbox" id="noticeTitle" value="">
+							Powiadomienia o nieprzeczytanych wiadomościach
+						</label>
+					</div>
+					<p class="text-secondary text-center m-0">Ustawienia są automatycznie zapisywane.</p>
+				</div>
 			</div>
 		</div>
 	</div>

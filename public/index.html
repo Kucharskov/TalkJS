@@ -9,6 +9,34 @@
 	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<form id="loginForm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<p class="h5 modal-title" id="loginModalLabel">Dołącz do czatu!</p>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Zamknij">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body text-justify">
+						<p>Klikając poniżej "Dołącz!" akceptujesz ogólnie przyjęte zasady netykiety i oświadczasz, że będziesz się do nich stosować.</p>
+
+						<div class="input-group mb-3">
+							<input id="username" type="text" class="form-control" placeholder="Nazwa użytkownika" aria-label="Nazwa użytkownika" maxlength="15" autocomplete="off">
+							<span class="input-group-addon" id="nameCount">15</span>
+						</div>
+						<p>Wchodząc na czat przyjmujesz do wiadomości to, że może tu nikogo nie być, a czat może działać dziwnie (bądź też wcale).</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Wejdź jako gość</button>
+						<button class="btn btn-primary" type="submit">Dołącz!</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	
 	<div class="container mt-5">
 		<div class="row justify-content-center">
 			<div class="col-xl-6 col-lg-8 col-md-10 col-12 mb-5">

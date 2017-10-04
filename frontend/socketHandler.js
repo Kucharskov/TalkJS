@@ -1,6 +1,6 @@
 import state from './state';
 
-const socket = io.connect('https://talk.kucharskov.pl/');
+const socket = io.connect('http://localhost:3000/');
 
 //Logowanie
 $('#loginForm').submit(function(e){

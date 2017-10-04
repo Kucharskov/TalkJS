@@ -1,5 +1,5 @@
 //Utils: antyspam.js
-const minMsgDelay = 700;
+let consts = require('../config/consts');
 let messages = [];
 let timestamps = [];
 
@@ -19,7 +19,7 @@ module.exports = {
 		if(messages[id] === message) return false;
 		else {
 			let date = new Date();
-			if(date.getTime() - timestamps[id] > minMsgDelay) {
+			if(date.getTime() - timestamps[id] > consts.minMsgDelay) {
 				timestamps[id] = date.getTime();
 				messages[id] = message;
 				return true;

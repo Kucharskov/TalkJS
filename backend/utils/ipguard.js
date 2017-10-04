@@ -1,13 +1,13 @@
 //Utils: ipguard.js
-const perIPlimit = 3;
 let iplist = [];
+let consts = require('../config/consts');
 
 module.exports = {
-	addIP: function(ip) {		
+	addIP: function(ip) {
 		if(!iplist[ip])	iplist[ip] = 0;
 		iplist[ip]++;
-		
-		return (iplist[ip] > perIPlimit) ? false : true;
+
+		return (iplist[ip] > consts.perIPlimit) ? false : true;
 	},
 
 	removeIP: function(ip) {

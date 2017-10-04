@@ -2,14 +2,16 @@
   "name": "nodejs-chat",
   "version": "1.0.0",
   "description": "Simple chat app",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "prestart": "webpack"
+    "prestart": "webpack",
+    "start": "nodemon app.js"
   },
   "author": "M. Kucharskov (Michał Kucharski); ZobekPL (Tymoteusz Cierzan)",
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.5",
+    "nodemon": "^1.12.1",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {

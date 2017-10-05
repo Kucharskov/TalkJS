@@ -4,8 +4,10 @@ let User = require('../models/user');
 let users = [];
 
 module.exports = {
+	users: users,
+	
 	addUser: function(id) {
-		users[id] = new User();
+		users.append(new User(id));
 	},
 
 	createUser: function(username, color) {
@@ -16,23 +18,36 @@ module.exports = {
 	},
 
 	findUser: function(id) {
-		if(users[id]) return users[id];
+		return users.find(function(iUser){
+			return iUser.id == id;
+		});
 	},
 
 	removeUser: function(id) {
-		if(users[id]) delete users[id];
+		let user = users.find(function(iUser){
+			return iUser.id == id;
+		});
+		delete user;
 	},
 
 	setUsername: function(id, username) {
 		if(username.trim() === '') return false;
-		for(var user in users)
+		for(let user in users){
 			if(users[user].username === functions.escapeText(username)) return false;
-		if(users[id]) users[id].setUsername(username);
+		}
+
+		let user = users.find(function(iUser){
+			return iUser.id == id;
+		});
+		user.setUsername(username);
 		return true;
 	},
 
 	setColor: function(id, color) {
-		if(users[id]) users[id].setColor(color);
+		let user = users.find(function(iUser){
+			return iUser.id == id;
+		});
+		user.setColor(color);
 	},
 
 	countAll: function() {
@@ -52,3 +67,5 @@ module.exports = {
 		return (userlist === '') ? '<p class="text-danger m-0">Czat pusty</p>' : userlist;
 	}
 };
+
+

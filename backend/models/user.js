@@ -1,8 +1,9 @@
 const consts = require('../utils/consts');
 const functions = require('../utils/functions');
 
-function User() {
+function User(id) {
 	this.username = '';
+	this.id = id;
 	this.color = consts.colors[Math.floor(Math.random()*consts.colors.length)];
 	this.logged = false;
 }

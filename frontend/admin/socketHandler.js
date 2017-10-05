@@ -20,6 +20,7 @@ $('#loginForm').submit(function(e){
 //Ładowanie danych
 socket.on('load data', function(data) {
 	//TODO: Załadowanie danych z arraya do tabeli
+	//TODO: Wysyłanie 'get data' co jakiś czas (np 1 minutę)
 	console.log(data);
 });
 

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="utf-8">
+	<title>TalkJS - Panel Administracyjny</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+	<div class="container my-5">
+		<div id="loginBody">
+			<div class="row justify-content-center">
+				<div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12">
+					<h1>Witaj na pokładzie!</h1>
+					<form id="loginForm">
+						<div class="form-group">
+							<label for="login">Nazwa administratora</label>
+							<input type="text" class="form-control" id="login" aria-describedby="desc" placeholder="Login">
+							<small id="desc" class="form-text text-muted text-right">Pamiętaj, że wielki brat czuwa!</small>
+						</div>
+						<div class="form-group">
+							<label for="password">Hasło administratora</label>
+							<input type="password" class="form-control" id="password" placeholder="Hasło">
+						</div>
+						<div class="text-right">
+							<button type="submit" class="btn btn-danger">Zaloguj!</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div id="adminBody" style="display: none">
+			<div class="row justify-content-center">
+				<div class="col-12">
+					<h1 class="text-center">Panel Administracyjny</h1>
+				</div>
+				<div class="col-lg-10 col-12 mt-3">
+					<table class="table table-bordered table-striped">
+						<thead class="thead-inverse">
+							<tr>
+								<th>#</th>
+								<th>Użytkownik</th>
+								<th>Adres IP</th>
+								<th>Akcje</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td class="user"><span class="badge badge-info" data-toggle="tooltip" data-placement="right" title="SocketID:&nbsp;hdfSAaf12d908dsaaHDF1_HDCA">Kucharskov</span></td>
+								<td>192.168.1.121</td>
+								<td class="text-center">
+									<span class="badge badge-danger">Wyrzuć</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/socket.io.js"></script>
+	<script>
+	$(function(){
+		const socket = io.connect('https://talk.kucharskov.pl/');
+		let logged = false;
+			
+		//Logowanie
+		$('#loginForm').submit(function(e){
+			e.preventDefault();
+			$('#loginBody').fadeOut(250, function() {
+				$('#adminBody').fadeIn(250);
+			});
+			return false;
+		});
+		
+		//Bindowanie tooltipów
+		$('td.user span.badge').tooltip();
+	});
+	</script>
+</body>
+</html>

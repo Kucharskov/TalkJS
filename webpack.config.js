@@ -3,12 +3,15 @@ const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-	entry: './frontend/client/client.js',
+	entry:  {
+		client : './frontend/client/client.js',
+		admin : './frontend/admin/admin.js',
+	},
 	output: {
 		path: path.resolve(__dirname, 'public/js'),
-		filename: 'client.js'
+		filename: "[name].js"
 	},
 	plugins: [
-		new UglifyJSPlugin()
+		//new UglifyJSPlugin()
 	]
 };

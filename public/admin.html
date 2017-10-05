@@ -67,23 +67,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/socket.io.js"></script>
-	<script>
-	$(function(){
-		const socket = io('/admins').connect('https://talk.kucharskov.pl/');
-		let logged = false;
-				
-		//Logowanie
-		$('#loginForm').submit(function(e){
-			e.preventDefault();
-			$('#loginBody').fadeOut(250, function() {
-				$('#adminBody').fadeIn(250);
-			});
-			return false;
-		});
-		
-		//Bindowanie tooltipów
-		$('td.user span.badge').tooltip();
-	});
-	</script>
+	<script src="js/admin.js"></script>
 </body>
 </html>

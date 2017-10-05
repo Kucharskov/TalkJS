@@ -17,6 +17,14 @@ User.prototype.setColor = function(color) {
 	this.color = color;
 }
 
+User.prototype.getData = function() {
+	return {
+		id: this.id,
+		username: this.username,
+		color: this.color
+	}
+}
+
 User.prototype.createMsg = function(message, escape = true) {		
 	message = (escape) ? functions.linkify(functions.escapeText(message)) : message;
 	return '<p class="m-0 msg" data-toggle="tooltip" data-placement="right" title="' + functions.generateTime()  + '"><span class="badge badge-' + this.color + '">' + this.username + '</span> ' + message + '</p>';

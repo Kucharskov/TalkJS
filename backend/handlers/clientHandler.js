@@ -7,7 +7,7 @@ const clientHandler = function(io) {
 	const clients = io.of("/clients");
 	clients.on('connection', function(socket) {		
 		//Connect
-		console.log('Connected: Socket ' + socket.id + 'connected!');
+		console.log('Client connected: Socket ' + socket.id + ' connected!');
 		socket.emit('message', UserSystem.createMsg('<span class="text-secondary">Witaj na czacie. Pamiętaj o zachowaniu kultury!</span>', false));
 		socket.emit('init');
 
@@ -22,7 +22,7 @@ const clientHandler = function(io) {
 		clients.emit('get users', store.countAll(), store.getUsers());
 
 		//Disconnect
-		socket.on('disconnect', function(data) {
+		socket.on('Client disconnect', function(data) {
 			console.log('Disconnected: Socket ' + socket.id + 'disconnected!');
 			
 			const user = store.findUser(socket.id);

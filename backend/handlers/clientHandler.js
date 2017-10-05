@@ -3,7 +3,7 @@ const antyspam = require('../utils/antyspam');
 const ipguard = require('../utils/ipguard')
 const UserSystem = store.createUser("System", "danger");
 
-const eventHandler = function(io) {
+const clientHandler = function(io) {
 	const clients = io.of("/clients");
 	clients.on('connection', function(socket) {		
 		//Connect
@@ -59,4 +59,4 @@ const eventHandler = function(io) {
 	});
 }
 
-module.exports = eventHandler;
+module.exports = clientHandler;

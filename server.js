@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
-const eventHandler = require(__dirname + '/backend/handlers/eventHandler');
+const clientHandler = require(__dirname + '/backend/handlers/clientHandler');
 const adminHandler = require(__dirname + '/backend/handlers/adminHandler');
 
 server.listen(process.env.PORT || 3000);
@@ -15,5 +15,5 @@ app.get('/', function(req, res) {
 app.get('/admin', function(req, res) {
 	res.sendFile(__dirname + '/public/admin.html');
 });
-eventHandler(io);
+clientHandler(io);
 adminHandler(io);

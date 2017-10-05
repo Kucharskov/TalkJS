@@ -4,6 +4,7 @@ let User = require('../models/user');
 let users = [];
 
 module.exports = {
+	users: users,
 	addUser: function(id) {
 		users.push(new User(id));
 	},
@@ -54,14 +55,5 @@ module.exports = {
 		for(let user in users)
 			if(users[user].logged) userlist += '<span class="badge badge-' + users[user].color + '">' + users[user].username + '</span> ';
 		return (userlist === '') ? '<p class="text-danger m-0">Czat pusty</p>' : userlist;
-	},
-	
-	getData: function() {
-		let userData = [];
-		for(let user in users) {
-			if(users[user].logged)
-				userData.push(users[user].getData());
-		}
-		return userData;
 	}
 };

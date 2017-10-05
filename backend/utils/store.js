@@ -7,7 +7,7 @@ module.exports = {
 	users: users,
 	
 	addUser: function(id) {
-		users.append(new User(id));
+		users.push(new User(id));
 	},
 
 	createUser: function(username, color) {
@@ -27,7 +27,8 @@ module.exports = {
 		let user = users.find(function(iUser){
 			return iUser.id == id;
 		});
-		delete user;
+		let userIndex = users.indexOf(user);
+		users.splice(userIndex, 1);
 	},
 
 	setUsername: function(id, username) {

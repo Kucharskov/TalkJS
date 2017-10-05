@@ -24,31 +24,21 @@ module.exports = {
 	},
 
 	removeUser: function(id) {
-		let user = users.find(function(iUser){
-			return iUser.id == id;
-		});
-		let userIndex = users.indexOf(user);
-		users.splice(userIndex, 1);
+		users.splice(users.indexOf(this.findUser(id)), 1);
 	},
 
-	setUsername: function(id, username) {
-		if(username.trim() === '') return false;
-		for(let user in users){
+	setUsername: function(id, username) {		
+		username = username.trim().substring(0, consts.maxNameLen);
+		if(username === '') return false;
+		for(let user in users)
 			if(users[user].username === functions.escapeText(username)) return false;
-		}
-
-		let user = users.find(function(iUser){
-			return iUser.id == id;
-		});
-		user.setUsername(username);
+		
+		this.findUser(id).setUsername(username);
 		return true;
 	},
 
 	setColor: function(id, color) {
-		let user = users.find(function(iUser){
-			return iUser.id == id;
-		});
-		user.setColor(color);
+		this.findUser(id).setColor(color);
 	},
 
 	countAll: function() {

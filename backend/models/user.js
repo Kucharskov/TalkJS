@@ -2,22 +2,12 @@ const consts = require('../utils/consts');
 const functions = require('../utils/functions');
 
 function User(id) {
-	this.data = {
-		username: '',
-		id: '',
-		color: consts.colors[Math.floor(Math.random()*consts.colors.length)],
-		logged: false
-	};
-	
 	this.username = '';
 	this.id = id;
 	this.color = consts.colors[Math.floor(Math.random()*consts.colors.length)];
 	this.logged = false;
 }
 
-User.prototype.getData = function() {	
-	return this.data;
-}
 
 User.prototype.setUsername = function(username) {	
 	this.username = functions.escapeText(username);

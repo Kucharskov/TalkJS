@@ -3,6 +3,7 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 const eventHandler = require(__dirname + '/backend/handlers/eventHandler');
+const adminHandler = require(__dirname + '/backend/handlers/adminHandler');
 
 server.listen(process.env.PORT || 3000);
 console.log('Server running at 127.0.0.1:3000...');

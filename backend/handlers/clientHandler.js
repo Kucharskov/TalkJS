@@ -22,8 +22,8 @@ const clientHandler = function(io) {
 		clients.emit('get users', store.countAll(), store.getUsers());
 
 		//Disconnect
-		socket.on('Client disconnect', function(data) {
-			console.log('Disconnected: Socket ' + socket.id + 'disconnected!');
+		socket.on('disconnect', function(data) {
+			console.log('Client disconnected: Socket ' + socket.id + 'disconnected!');
 			
 			const user = store.findUser(socket.id);
 			if(user.logged) clients.emit('message', UserSystem.createMsg('<span class="text-secondary">Użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong> pożegnał się z nami!</span>', false));

@@ -39,7 +39,7 @@ module.exports = {
 		this.findUser(id).setColor(color);
 	},
 
-	countAll: function() {
+	getCount: function() {
 		let guestCount = 0;
 		let usersCount = 0;
 		for(let user in users) {
@@ -49,7 +49,7 @@ module.exports = {
 		return (guestCount > 0) ? usersCount + ' (' + guestCount + '&nbsp;gości)' : usersCount;
 	},
 
-	getUsers: function() {
+	getUserlist: function() {
 		let userlist = '';
 		for(let user in users)
 			if(users[user].logged) userlist += '<span class="badge badge-' + users[user].color + '">' + users[user].username + '</span> ';

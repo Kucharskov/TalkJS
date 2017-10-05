@@ -63,9 +63,9 @@ socket.on('message', function(data) {
 });
 
 //Odbieranie listy uzytkowników
-socket.on('get users', function(counter, userlist) {
-	$('#counter').html(counter);
-	$('#userlist').html(userlist);
+socket.on('get users', function(data) {
+	$('#counter').html(data.count);
+	$('#userlist').html(data.userlist);
 });
 
 //Odbieranie błędu logowania

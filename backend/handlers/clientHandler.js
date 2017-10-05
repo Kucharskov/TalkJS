@@ -19,7 +19,7 @@ const clientHandler = function(io) {
 			ipguard.removeIP(socket.handshake.headers['x-real-ip']);
 			socket.disconnect();
 		}
-		clients.emit('get users', store.countAll(), store.getUsers());
+		clients.emit('get users', {count: store.getCount(), userlist: store.getUserlist()});
 
 		//Disconnect
 		socket.on('disconnect', function(data) {
@@ -32,7 +32,7 @@ const clientHandler = function(io) {
 			antyspam.removeAutor(socket.id);
 			ipguard.removeIP(socket.handshake.headers['x-real-ip']);
 			
-			clients.emit('get users', store.countAll(), store.getUsers());
+			clients.emit('get users', {count: store.getCount(), userlist: store.getUserlist()});
 		});
 
 		//User set
@@ -42,7 +42,7 @@ const clientHandler = function(io) {
 				callback(true);
 				
 				const user = store.findUser(socket.id);
-				clients.emit('get users', store.countAll(), store.getUsers());
+				clients.emit('get users', {count: store.getCount(), userlist: store.getUserlist()});
 				clients.emit('message', UserSystem.createMsg('<span class="text-secondary">Dołączył do nas użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong>!</span>', false));
 			} else socket.emit('usererror');
 		});

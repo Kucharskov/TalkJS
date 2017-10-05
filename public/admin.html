@@ -69,9 +69,9 @@
 	<script src="js/socket.io.js"></script>
 	<script>
 	$(function(){
-		//const socket = io.connect('https://talk.kucharskov.pl/');
+		const socket = io('/admins').connect('https://talk.kucharskov.pl/');
 		let logged = false;
-			
+				
 		//Logowanie
 		$('#loginForm').submit(function(e){
 			e.preventDefault();

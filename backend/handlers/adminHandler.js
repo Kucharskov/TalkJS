@@ -1,5 +1,6 @@
 const adminHandler = function(io) {
-	io.sockets.on('connection', function(socket) {
+	const admins = io.of("/admins");
+	admins.on('connection', function(socket) {
 		console.log("LOG: adminHandler");
 	});
 }

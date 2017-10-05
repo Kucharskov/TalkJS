@@ -1,5 +1,5 @@
 import state from './state';
-const socket = io.connect('https://talk.kucharskov.pl/');
+const socket = io('/clients').connect('https://talk.kucharskov.pl/');
 
 //Logowanie
 $('#loginForm').submit(function(e){

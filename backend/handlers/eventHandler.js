@@ -4,7 +4,8 @@ const ipguard = require('../utils/ipguard')
 const UserSystem = store.createUser("System", "danger");
 
 const eventHandler = function(io) {
-	io.sockets.on('connection', function(socket) {
+	const clients = io.of("/clients");
+	clients.on('connection', function(socket) {		
 		//Connect
 		console.log('Connected: Socket ' + socket.id + 'connected!');
 		socket.emit('message', UserSystem.createMsg('<span class="text-secondary">Witaj na czacie. Pamiętaj o zachowaniu kultury!</span>', false));
@@ -18,20 +19,20 @@ const eventHandler = function(io) {
 			ipguard.removeIP(socket.handshake.headers['x-real-ip']);
 			socket.disconnect();
 		}
-		io.sockets.emit('get users', store.countAll(), store.getUsers());
+		clients.emit('get users', store.countAll(), store.getUsers());
 
 		//Disconnect
 		socket.on('disconnect', function(data) {
 			console.log('Disconnected: Socket ' + socket.id + 'disconnected!');
 			
 			const user = store.findUser(socket.id);
-			if(user.logged) io.sockets.emit('message', UserSystem.createMsg('<span class="text-secondary">Użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong> pożegnał się z nami!</span>', false));
+			if(user.logged) clients.emit('message', UserSystem.createMsg('<span class="text-secondary">Użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong> pożegnał się z nami!</span>', false));
 			
 			store.removeUser(socket.id);
 			antyspam.removeAutor(socket.id);
 			ipguard.removeIP(socket.handshake.headers['x-real-ip']);
 			
-			io.sockets.emit('get users', store.countAll(), store.getUsers());
+			clients.emit('get users', store.countAll(), store.getUsers());
 		});
 
 		//User set
@@ -41,8 +42,8 @@ const eventHandler = function(io) {
 				callback(true);
 				
 				const user = store.findUser(socket.id);
-				io.sockets.emit('get users', store.countAll(), store.getUsers());
-				io.sockets.emit('message', UserSystem.createMsg('<span class="text-secondary">Dołączył do nas użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong>!</span>', false));
+				clients.emit('get users', store.countAll(), store.getUsers());
+				clients.emit('message', UserSystem.createMsg('<span class="text-secondary">Dołączył do nas użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong>!</span>', false));
 			} else socket.emit('usererror');
 		});
 
@@ -52,7 +53,7 @@ const eventHandler = function(io) {
 			message = message.toString().trim();
 			if(message != "") {
 				if(!antyspam.test(socket.id, message)) socket.emit('message', UserSystem.createMsg('<span class="text-danger">Nie powtarzaj się oraz nie rozsyłaj SPAMu!</span>', false));
-				else if(user.logged) io.sockets.emit('message', user.createMsg(message, true));
+				else if(user.logged) clients.emit('message', user.createMsg(message, true));
 			}
 		});
 	});

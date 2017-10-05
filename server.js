@@ -16,3 +16,4 @@ app.get('/admin', function(req, res) {
 	res.sendFile(__dirname + '/public/admin.html');
 });
 eventHandler(io);
+adminHandler(io);

@@ -1,7 +1,7 @@
 module.exports = {
 	//Funkcja do escapeowania tekstu
 	escapeText: function(text) {
-		var map = {
+		let map = {
 			'&': '&amp;',
 			'<': '&lt;',
 			'>': '&gt;',
@@ -13,7 +13,7 @@ module.exports = {
 
 	//Funkcja do renderowania linków
 	linkify: function(text) {
-		var urlRegex =/(\b(https?):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+		let urlRegex =/(\b(https?):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
 		return text.replace(urlRegex, function(url) {
 			return '<a target="_blank" href="' + url + '">' + url + '</a>';
 		});

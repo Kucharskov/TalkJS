@@ -5,7 +5,6 @@ let users = [];
 
 module.exports = {
 	users: users,
-	
 	addUser: function(id) {
 		users.push(new User(id));
 	},
@@ -44,7 +43,7 @@ module.exports = {
 	countAll: function() {
 		let guestCount = 0;
 		let usersCount = 0;
-		for(var user in users) {
+		for(let user in users) {
 			if(users[user].logged) usersCount++;
 			else guestCount++;
 		}
@@ -53,7 +52,7 @@ module.exports = {
 
 	getUsers: function() {
 		let userlist = '';
-		for(var user in users)
+		for(let user in users)
 			if(users[user].logged) userlist += '<span class="badge badge-' + users[user].color + '">' + users[user].username + '</span> ';
 		return (userlist === '') ? '<p class="text-danger m-0">Czat pusty</p>' : userlist;
 	}

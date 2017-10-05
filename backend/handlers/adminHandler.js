@@ -15,10 +15,8 @@ const adminHandler = function(io) {
 		socket.on('login', function(data, callback) {
 			if(!(callback instanceof Function)) return;
 			//TODO: Sprawdzanie danych w bazie adminów
-			if(data.username === "admin" && data.password === "admin1") {
-				callback(true);
-				socket.emit('load data', store.getData());
-			} else callback(false);
+			if(data.username === "admin" && data.password === "admin1") callback(true);
+			else callback(false);
 		});
 		
 		//Get data

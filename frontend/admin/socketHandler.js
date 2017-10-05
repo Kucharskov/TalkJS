@@ -1,5 +1,5 @@
 const socket = io('/admins').connect('https://talk.kucharskov.pl/');
-		
+
 //Logowanie
 $('#loginForm').submit(function(e){
 	e.preventDefault();

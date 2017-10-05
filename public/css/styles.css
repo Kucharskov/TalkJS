@@ -44,7 +44,7 @@ span.badge:not(.badge-danger), .form-check-label, #settingsCog {
 	main {
 		min-height: 90vh;
 	}
-	
+
 	.hidden {
 		display: none;
 	}

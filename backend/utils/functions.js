@@ -10,7 +10,7 @@ module.exports = {
 		};
 		return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 	},
-	
+
 	//Funkcja do renderowania linków
 	linkify: function(text) {
 		var urlRegex =/(\b(https?):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;

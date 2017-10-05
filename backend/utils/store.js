@@ -19,7 +19,7 @@ module.exports = {
 
 	findUser: function(id) {
 		return users.find(function(iUser){
-			return iUser.id == id;
+			return iUser.id === id;
 		});
 	},
 
@@ -58,5 +58,3 @@ module.exports = {
 		return (userlist === '') ? '<p class="text-danger m-0">Czat pusty</p>' : userlist;
 	}
 };
-
-

@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "express": "^4.15.5",
+    "md5": "^2.2.1",
     "nodemon": "^1.12.1",
     "socket.io": "^2.0.3"
   },

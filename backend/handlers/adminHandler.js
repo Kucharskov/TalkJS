@@ -1,4 +1,6 @@
 const store = require('../utils/store');
+const adminAccounts = require('../utils/adminAccounts');
+const md5 = require('md5');
 
 const adminHandler = function(io) {
 	const admins = io.of("/admins");
@@ -14,16 +16,21 @@ const adminHandler = function(io) {
 		//Login
 		socket.on('login', function(data, callback) {
 			if(!(callback instanceof Function)) return;
-			//TODO: Sprawdzanie danych w bazie adminów
-			if(data.username === "admin" && data.password === "admin1") callback(true);
-			else callback(false);
+
+			adminAccounts.forEach(function(admin){
+				if(data.username === admin.username && md5(data.password) === admin.password){
+					callback(true);
+					return;
+				}
+			});
+		 	callback(false);
 		});
-		
+
 		//Get data
 		socket.on('get data', function() {
 			socket.emit('load data', store.getData());
 		});
-		
+
 		//Wysyłanie danych co interwał
 		//setInterval(function(){
 		//	socket.emit('load data', store.getData());

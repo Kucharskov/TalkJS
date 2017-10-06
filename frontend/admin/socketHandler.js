@@ -19,10 +19,16 @@ $('#loginForm').submit(function(e){
 
 //Ładowanie danych
 socket.on('load data', function(data) {
-	//TODO: Załadowanie danych z arraya do tabeli
 	//TODO: Wysyłanie 'get data' co jakiś czas (np 1 minutę)
-	console.log(data);
+	if(data) {
+		var counter = 0;
+		$('#table').html('');
+		for(var index in data) {
+			counter++;
+			var html = '<tr><th scope="row">' + counter + '</th><td class="user"><span class="badge badge-' + data[index].color + '" data-toggle="tooltip" data-placement="right" title="SocketID:&nbsp;hdfSAaf12d908dsaaHDF1_HDCA">' + data[index].username + '</span></td><td class="text-center"><span class="badge badge-danger">Wyrzuć</span></td></tr>'
+			$('#table').append(html);
+			//Bindowanie tooltipów
+			$('td.user span.badge').tooltip();
+		}
+	}
 });
-
-//Bindowanie tooltipów
-$('td.user span.badge').tooltip();

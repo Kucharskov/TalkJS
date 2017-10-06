@@ -23,6 +23,11 @@ const adminHandler = function(io) {
 		socket.on('get data', function() {
 			socket.emit('load data', store.getData());
 		});
+		
+		//Wysyłanie danych co interwał
+		//setInterval(function(){
+		//	socket.emit('load data', store.getData());
+		//}, 1000);
 	});
 }
 

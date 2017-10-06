@@ -30,5 +30,8 @@ socket.on('load data', function(data) {
 			//Bindowanie tooltipów
 			$('td.user span.badge').tooltip();
 		}
+	}else{
+		var html = '<tr><th scope="row">0</th><td class="user">Brak zalogowanych użytkowników</td><td class="text-center"></td></tr>';
+		$('#table').append(html);
 	}
 });

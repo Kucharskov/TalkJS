@@ -1,6 +1,6 @@
 const store = require('../utils/store');
 const adminAccounts = require('../utils/adminAccounts');
-const md5 = require('md5');
+const sha512 = require('js-sha512');
 
 const adminHandler = function(io) {
 	const admins = io.of("/admins");
@@ -18,7 +18,7 @@ const adminHandler = function(io) {
 			if(!(callback instanceof Function)) return;
 
 			adminAccounts.forEach(function(admin){
-				if(data.username === admin.username && md5(data.password) === admin.password){
+				if(data.username === admin.username && sha512(data.password) === admin.password){
 					callback(true);
 					return;
 				}

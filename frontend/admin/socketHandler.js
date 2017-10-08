@@ -33,7 +33,7 @@ socket.on('load data', function(data) {
 		//		var id = 
 		//		socket.emit('admin messaage', id, prompt("Wiadomość: "));
 		//	}
-		/});
+		//});
 	}
 });
 

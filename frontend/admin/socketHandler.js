@@ -25,6 +25,15 @@ socket.on('load data', function(data) {
 		$('#table').html('');
 		$('#table').append(data);
 		$('td.user span.badge').tooltip();
+		
+		//Message test
+		//$('td.actions span.badge .send').on('click', function() {	
+		//	if(state.system.isUserLoggedIn) {
+		//		TODO: jQuery pobieranie wartości z tooltipa bądź innego elementu gdzie wrzuci się socket.id
+		//		var id = 
+		//		socket.emit('admin messaage', id, prompt("Wiadomość: "));
+		//	}
+		/});
 	}
 });
 

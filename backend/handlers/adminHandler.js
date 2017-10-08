@@ -4,6 +4,7 @@ const sha512 = require('js-sha512');
 
 const adminHandler = function(io) {
 	const admins = io.of("/admins");
+	const clients = io.of("/clients");
 	admins.on('connection', function(socket) {
 		//Connect
 		console.log('Admin connected: Socket ' + socket.id + ' connected!');
@@ -38,12 +39,20 @@ const adminHandler = function(io) {
 					let counter = 0;
 					for(var index in data) {
 						counter++;
-						htmlData += '<tr><th scope="row">' + counter + '</th><td class="user"><span class="badge badge-' + data[index].color + '" data-toggle="tooltip" data-placement="right" title="SocketID:&nbsp;' + data[index].id + '">' + data[index].username + '</span></td><td class="text-center"><span class="badge badge-danger">Wyrzuć</span></td></tr>';
+						htmlData += '<tr><th scope="row">' + counter + '</th><td class="user"><span class="badge badge-' + data[index].color + '" data-toggle="tooltip" data-placement="right" title="SocketID:&nbsp;' + data[index].id + '">' + data[index].username + '</span></td><td class="actions text-center"><span class="badge badge-danger">Wyrzuć</span> <span class="badge badge-dark send">Napisz</span></td></tr>';
 					}
 				}
 				socket.emit('load data', htmlData);
 			}
 		});
+
+		//Message test
+		//socket.on('admin messaage', function(id, message) {
+		//	if(socket.logged) {
+		//		TODO: Formatowanie wiadomości na alert bądź "System"
+		//		clients.to(id).emit(message);
+		//	}
+		//});
 	});
 }
 

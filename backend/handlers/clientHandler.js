@@ -1,6 +1,6 @@
 const store = require('../utils/store');
 const antyspam = require('../utils/antyspam');
-const ipguard = require('../utils/ipguard')
+const ipguard = require('../utils/ipguard');
 const UserSystem = store.createUser("System", "danger");
 
 const clientHandler = function(io) {

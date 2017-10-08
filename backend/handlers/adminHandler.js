@@ -20,6 +20,7 @@ const adminHandler = function(io) {
 			adminAccounts.forEach(function(admin){
 				if(data.username === admin.username && sha512(data.password) === admin.password){
 					callback(true);
+					socket.logged = true;
 					return;
 				}
 			});
@@ -28,13 +29,21 @@ const adminHandler = function(io) {
 
 		//Get data
 		socket.on('get data', function() {
-			socket.emit('load data', store.getData());
-		});
+			if(socket.logged) {
+				let data = store.getData();
+				let htmlData = '<tr><td class="table-danger text-center" colspan="3">Brak zalogowanych użytkowników</td></tr>';
 
-		//Wysyłanie danych co interwał
-		//setInterval(function(){
-		//	socket.emit('load data', store.getData());
-		//}, 1000);
+				if(data) {
+					htmlData = '';
+					let counter = 0;
+					for(var index in data) {
+						counter++;
+						htmlData += '<tr><th scope="row">' + counter + '</th><td class="user"><span class="badge badge-' + data[index].color + '" data-toggle="tooltip" data-placement="right" title="SocketID:&nbsp;' + data[index].id + '">' + data[index].username + '</span></td><td class="text-center"><span class="badge badge-danger">Wyrzuć</span></td></tr>';
+					}
+				}
+				socket.emit('load data', htmlData);
+			}
+		});
 	});
 }
 

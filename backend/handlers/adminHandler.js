@@ -1,6 +1,7 @@
 const store = require('../utils/store');
 const adminAccounts = require('../utils/adminAccounts');
 const sha512 = require('js-sha512');
+const UserSystem = store.createUser("System", "danger");
 
 const adminHandler = function(io) {
 	const admins = io.of("/admins");
@@ -39,7 +40,7 @@ const adminHandler = function(io) {
 					let counter = 0;
 					for(var index in data) {
 						counter++;
-						htmlData += '<tr><th scope="row">' + counter + '</th><td class="user"><span class="badge badge-' + data[index].color + '" data-toggle="tooltip" data-placement="right" title="SocketID:&nbsp;' + data[index].id + '">' + data[index].username + '</span></td><td class="actions text-center"><span class="badge badge-danger">Wyrzuć</span> <span class="badge badge-dark send">Napisz</span></td></tr>';
+						htmlData += '<tr data-id=' + data[index].id + '><th scope="row">' + counter + '</th><td class="user"><span class="badge badge-' + data[index].color + '">' + data[index].username + '</span></td><td class="actions text-center"><span class="badge badge-danger">Wyrzuć</span> <span class="badge badge-dark send">Napisz</span></td></tr>';
 					}
 				}
 				socket.emit('load data', htmlData);
@@ -47,12 +48,10 @@ const adminHandler = function(io) {
 		});
 
 		//Message test
-		//socket.on('admin messaage', function(id, message) {
-		//	if(socket.logged) {
-		//		TODO: Formatowanie wiadomości na alert bądź "System"
-		//		clients.to(id).emit(message);
-		//	}
-		//});
+		socket.on('admin messaage', function(data) {
+			if(socket.logged)
+				clients.to(data.id).emit('message', UserSystem.createMsg('<span class="text-danger">Wiadomość od administratora: ' + data.message + '</span>', false));
+		});
 	});
 }
 

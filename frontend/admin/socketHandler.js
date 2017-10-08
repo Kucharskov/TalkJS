@@ -24,15 +24,16 @@ socket.on('load data', function(data) {
 	if(state.system.isUserLoggedIn) {
 		$('#table').html('');
 		$('#table').append(data);
-		$('td.user span.badge').tooltip();
 		
-		//Message test
-		//$('td.actions span.badge .send').on('click', function() {	
-		//	if(state.system.isUserLoggedIn) {
-		//		TODO: jQuery pobieranie wartości z tooltipa bądź innego elementu gdzie wrzuci się socket.id
-		//		var id = 
-		//		socket.emit('admin messaage', id, prompt("Wiadomość: "));
-		//	}
+		//Bindowanie wiadomości
+		$('.actions span.badge.send').on('click', function() {
+			var id = $(this).parent("td").parent("tr").attr("data-id");
+			socket.emit('admin messaage', {id: id, message: prompt("Wiadomość: ")});
+		});
+		
+		//Bindowanie kickowania
+		//$('.actions span.badge.kick').on('click', function() {
+		//	var id = $(this).parent("td").parent("tr").attr("data-id");
 		//});
 	}
 });

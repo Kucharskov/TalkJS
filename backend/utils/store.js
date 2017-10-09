@@ -4,8 +4,6 @@ let User = require('../models/user');
 let users = [];
 
 module.exports = {
-	users: users,
-	
 	addUser: function(id) {
 		users.push(new User(id));
 	},
@@ -19,7 +17,7 @@ module.exports = {
 
 	findUser: function(id) {
 		return users.find(function(iUser){
-			return iUser.id == id;
+			return iUser.id === id;
 		});
 	},
 
@@ -41,22 +39,28 @@ module.exports = {
 		this.findUser(id).setColor(color);
 	},
 
-	countAll: function() {
+	getCount: function() {
 		let guestCount = 0;
 		let usersCount = 0;
-		for(var user in users) {
+		for(let user in users) {
 			if(users[user].logged) usersCount++;
 			else guestCount++;
 		}
 		return (guestCount > 0) ? usersCount + ' (' + guestCount + '&nbsp;gości)' : usersCount;
 	},
 
-	getUsers: function() {
+	getUserlist: function() {
 		let userlist = '';
-		for(var user in users)
+		for(let user in users)
 			if(users[user].logged) userlist += '<span class="badge badge-' + users[user].color + '">' + users[user].username + '</span> ';
 		return (userlist === '') ? '<p class="text-danger m-0">Czat pusty</p>' : userlist;
+	},
+	
+	getData: function() {
+		let userData = [];
+		for(let user in users)
+			if(users[user].logged)
+				userData.push(users[user].getData());
+		return (userData.length > 0) ? userData : false;
 	}
 };
-
-

@@ -1,5 +1,5 @@
 import state from './state';
-const socket = io.connect('https://talk.kucharskov.pl/');
+const socket = io('/clients').connect('https://talk.kucharskov.pl/');
 
 //Logowanie
 $('#loginForm').submit(function(e){
@@ -36,6 +36,12 @@ socket.on('init', function() {
 	$('#nameCount').html(15 - state.domElements.username.val().length);
 });
 
+//Wyrzucenie z czatu
+socket.on('kicked', function() {
+	state.system.isUserLoggedIn = false;
+	state.domElements.message.prop('disabled', true);
+});
+
 //Reakcja na wiadomość
 socket.on('message', function(data) {
 	state.domElements.chat.append(data);
@@ -63,9 +69,9 @@ socket.on('message', function(data) {
 });
 
 //Odbieranie listy uzytkowników
-socket.on('get users', function(counter, userlist) {
-	$('#counter').html(counter);
-	$('#userlist').html(userlist);
+socket.on('get users', function(data) {
+	$('#counter').html(data.count);
+	$('#userlist').html(data.userlist);
 });
 
 //Odbieranie błędu logowania

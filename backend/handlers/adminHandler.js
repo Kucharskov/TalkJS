@@ -41,7 +41,7 @@ const adminHandler = function(io) {
 					let counter = 0;
 					for(var index in data) {
 						counter++;
-						htmlData += '<tr data-id=' + data[index].id + '><th scope="row">' + counter + '</th><td class="user"><span class="badge badge-' + data[index].color + '">' + data[index].username + '</span></td><td class="actions text-center"><span class="badge badge-danger">Wyrzuć</span> <span class="badge badge-dark send">Napisz</span></td></tr>';
+						htmlData += '<tr data-id=' + data[index].id + '><th scope="row">' + counter + '</th><td class="user"><span class="badge badge-' + data[index].color + '">' + data[index].username + '</span></td><td class="actions text-center"><span class="badge badge-danger kick">Wyrzuć</span> <span class="badge badge-dark send">Napisz</span></td></tr>';
 					}
 				}
 				socket.emit('load data', htmlData);
@@ -52,6 +52,15 @@ const adminHandler = function(io) {
 		socket.on('admin messaage', function(data) {
 			if(socket.logged)
 				clients.to(data.id).emit('message', UserSystem.createMsg('<span class="text-danger">Wiadomość od administratora: ' + data.message + '</span>', false));
+		});
+
+		//Message test
+		socket.on('kick user', function(id) {
+			if(socket.logged) {
+				const user = store.findUser(id);
+				clients.emit('message', UserSystem.createMsg('<span class="text-danger">Użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong> został wyrzucony z czatu!</span>', false));
+				//TODO: Magiczna instrukcja socket.io z namespace clients do wywalenia konkretnego id
+			}
 		});
 	});
 }

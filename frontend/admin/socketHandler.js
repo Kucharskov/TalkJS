@@ -45,9 +45,10 @@ socket.on('load data', function(data) {
 		});
 		
 		//Bindowanie kickowania
-		//$('.actions span.badge.kick').on('click', function() {
-		//	var id = $(this).parents('tr').attr('data-id');
-		//});
+		$('.actions span.badge.kick').on('click', function() {
+			var id = $(this).parents('tr').attr('data-id');
+			socket.emit('kick user', id);
+		});
 	}
 });
 

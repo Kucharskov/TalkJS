@@ -36,6 +36,12 @@ socket.on('init', function() {
 	$('#nameCount').html(15 - state.domElements.username.val().length);
 });
 
+//Wyrzucenie z czatu
+socket.on('kicked', function() {
+	state.system.isUserLoggedIn = false;
+	state.domElements.message.prop('disabled', true);
+});
+
 //Reakcja na wiadomość
 socket.on('message', function(data) {
 	state.domElements.chat.append(data);

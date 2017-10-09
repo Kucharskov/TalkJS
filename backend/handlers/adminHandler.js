@@ -59,7 +59,8 @@ const adminHandler = function(io) {
 			if(socket.logged) {
 				const user = store.findUser(id);
 				clients.emit('message', UserSystem.createMsg('<span class="text-danger">Użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong> został wyrzucony z czatu!</span>', false));
-				//TODO: Magiczna instrukcja socket.io z namespace clients do wywalenia konkretnego id
+				clients.connected[id].emit('kicked');
+				clients.connected[id].disconnect();
 			}
 		});
 	});

@@ -48,6 +48,7 @@ socket.on('load data', function(data) {
 		$('.actions span.badge.kick').on('click', function() {
 			var id = $(this).parents('tr').attr('data-id');
 			socket.emit('kick user', id);
+			socket.emit('get data');
 		});
 	}
 });

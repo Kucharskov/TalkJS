@@ -1,6 +1,5 @@
 # NodeJS Chat [live](https://talk.kucharskov.pl/)
-### Prosty czat napisany w Node.js z użyciem socket.io
----
+
 ## Zmiany w wersji 2.0
 * ***[OPTYMALIZACJA]*** Refraktoryzacja kodu (poukładanie folderów i plików)
 * ***[FEATURE]*** Panel administracyjny z kodowaniem SHA-512 i opcją kicka bądź upomnienia od administratora.

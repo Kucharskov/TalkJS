@@ -5,6 +5,11 @@ state.domElements.username.on('keyup', function() {
 	$('#nameCount').html(15 - state.domElements.username.val().length);
 });
 
+//Licznik znaków w wiadomości
+state.domElements.message.on('keyup', function() {
+	$('#messageCount').html(250 - state.domElements.message.val().length);
+});
+
 //Wykrywanie aktywności okna
 $(window).on('focus', function() {
 	if(state.settings.noticeTitle) {

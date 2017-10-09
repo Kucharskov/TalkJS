@@ -27,7 +27,7 @@ class User {
 	}
 
 	createMsg(message, escape = true) {		
-		message = (escape) ? functions.linkify(functions.escapeText(message)) : message;
+		message = (escape) ? functions.linkify(functions.escapeText(message)).substring(0, 250) : message;
 		return '<p class="m-0 msg" data-toggle="tooltip" data-placement="right" title="' + functions.generateTime()  + '"><span class="badge badge-' + this.color + '">' + this.username + '</span> ' + message + '</p>';
 	}
 }

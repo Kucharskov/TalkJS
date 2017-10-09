@@ -37,13 +37,13 @@ socket.on('load data', function(data) {
 		
 		//Bindowanie wiadomości
 		$('.actions span.badge.send').on('click', function() {
-			var id = $(this).parent('td').parent('tr').attr('data-id');
+			var id = $(this).parents('tr').attr('data-id');
 			socket.emit('admin messaage', {id: id, message: prompt('Wiadomość: ')});
 		});
 		
 		//Bindowanie kickowania
 		//$('.actions span.badge.kick').on('click', function() {
-		//	var id = $(this).parent("td").parent("tr").attr("data-id");
+		//	var id = $(this).parents('tr').attr('data-id');
 		//});
 	}
 });

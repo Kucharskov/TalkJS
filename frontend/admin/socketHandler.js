@@ -39,9 +39,7 @@ socket.on('load data', function(data) {
 		$('.actions span.badge.send').on('click', function() {
 			var id = $(this).parents('tr').attr('data-id');
 			var message = prompt('Wiadomość: ');
-			if(message) {
-				socket.emit('admin messaage', {id: id, message: message});
-			}			
+			if(message) socket.emit('admin messaage', {id: id, message: message});	
 		});
 		
 		//Bindowanie kickowania
@@ -53,8 +51,7 @@ socket.on('load data', function(data) {
 	}
 });
 
-//Wysyłanie danych co minute
-setInterval(function(){
-	if(state.system.isUserLoggedIn)
-		socket.emit('get data');
-}, 30000);
+//Odświeżanie danych
+socket.on('refresh data', function() {
+	if(state.system.isUserLoggedIn) socket.emit('get data');
+});

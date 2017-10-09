@@ -4,6 +4,7 @@ const ipguard = require('../utils/ipguard');
 const UserSystem = store.createUser("System", "danger");
 
 const clientHandler = function(io) {
+	const admins = io.of("/admins");
 	const clients = io.of("/clients");
 	clients.on('connection', function(socket) {		
 		//Connect
@@ -19,6 +20,7 @@ const clientHandler = function(io) {
 			ipguard.removeIP(socket.handshake.headers['x-real-ip']);
 			socket.disconnect();
 		}
+		admins.emit('refresh data');
 		clients.emit('get users', {count: store.getCount(), userlist: store.getUserlist()});
 
 		//Disconnect
@@ -32,6 +34,7 @@ const clientHandler = function(io) {
 			antyspam.removeAutor(socket.id);
 			ipguard.removeIP(socket.handshake.headers['x-real-ip']);
 			
+			admins.emit('refresh data');
 			clients.emit('get users', {count: store.getCount(), userlist: store.getUserlist()});
 		});
 
@@ -42,6 +45,7 @@ const clientHandler = function(io) {
 				callback(true);
 				
 				const user = store.findUser(socket.id);
+				admins.emit('refresh data');
 				clients.emit('get users', {count: store.getCount(), userlist: store.getUserlist()});
 				clients.emit('message', UserSystem.createMsg('<span class="text-secondary">Dołączył do nas użytkownik <strong class="text-' + user.color + '">' + user.username + '</strong>!</span>', false));
 			} else socket.emit('usererror');

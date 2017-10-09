@@ -3,5 +3,8 @@ module.exports = {
 		isUserLoggedIn: false
 	},
 	domElements: {
+		table: $('#table'),
+		login: $('#login'),
+		password: $('#password')
 	}
 };

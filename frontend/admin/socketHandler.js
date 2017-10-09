@@ -4,7 +4,7 @@ const socket = io('/admins').connect('https://talk.kucharskov.pl/');
 //Logowanie
 $('#loginForm').submit(function(e){
 	e.preventDefault();
-	socket.emit('login', {username: $('#login').val(), password: $('#password').val()}, function(data){
+	socket.emit('login', {username: state.domElements.login.val(), password: state.domElements.password.val()}, function(data){
 		state.system.isUserLoggedIn = data;
 		if(state.system.isUserLoggedIn) {
 			$('#loginBody').fadeOut(250, function() {
@@ -12,8 +12,8 @@ $('#loginForm').submit(function(e){
 				socket.emit('get data');
 			});
 		} else {
-			$('#login').addClass('is-invalid');
-			$('#password').addClass('is-invalid');
+			state.domElements.login.addClass('is-invalid');
+			state.domElements.password.addClass('is-invalid');
 		}
 	});
 	return false;
@@ -22,13 +22,13 @@ $('#loginForm').submit(function(e){
 //Ładowanie danych
 socket.on('load data', function(data) {
 	if(state.system.isUserLoggedIn) {
-		$('#table').html('');
-		$('#table').append(data);
+		state.domElements.table.html('');
+		state.domElements.table.append(data);
 		
 		//Bindowanie wiadomości
 		$('.actions span.badge.send').on('click', function() {
-			var id = $(this).parent("td").parent("tr").attr("data-id");
-			socket.emit('admin messaage', {id: id, message: prompt("Wiadomość: ")});
+			var id = $(this).parent('td').parent('tr').attr('data-id');
+			socket.emit('admin messaage', {id: id, message: prompt('Wiadomość: ')});
 		});
 		
 		//Bindowanie kickowania

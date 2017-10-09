@@ -25,6 +25,7 @@ $('#messageForm').submit(function(e){
 		socket.emit('send message', state.domElements.message.val());
 	state.domElements.message.val('');
 	state.domElements.message.focus();
+	$('#messageCount').html(250 - state.domElements.message.val().length);
 	return false;
 });
 
@@ -34,6 +35,7 @@ socket.on('init', function() {
 	state.domElements.loginModal.modal('show');
 	state.domElements.message.prop('disabled', true);
 	$('#nameCount').html(15 - state.domElements.username.val().length);
+	$('#messageCount').html(250 - state.domElements.message.val().length);
 });
 
 //Wyrzucenie z czatu

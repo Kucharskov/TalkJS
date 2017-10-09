@@ -19,6 +19,16 @@ $('#loginForm').submit(function(e){
 	return false;
 });
 
+//Inicjalizacja
+socket.on('init', function() {
+	state.system.isUserLoggedIn = false;
+	state.domElements.login.val('');
+	state.domElements.password.val('');
+	state.domElements.table.html('');
+	$('#loginBody').show();
+	$('#adminBody').hide();
+});
+
 //Ładowanie danych
 socket.on('load data', function(data) {
 	if(state.system.isUserLoggedIn) {

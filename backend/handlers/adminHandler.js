@@ -9,6 +9,7 @@ const adminHandler = function(io) {
 	admins.on('connection', function(socket) {
 		//Connect
 		console.log('Admin connected: Socket ' + socket.id + ' connected!');
+		socket.emit('init');
 
 		//Disconnect
 		socket.on('disconnect', function(data) {

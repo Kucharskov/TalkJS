@@ -38,7 +38,10 @@ socket.on('load data', function(data) {
 		//Bindowanie wiadomości
 		$('.actions span.badge.send').on('click', function() {
 			var id = $(this).parents('tr').attr('data-id');
-			socket.emit('admin messaage', {id: id, message: prompt('Wiadomość: ')});
+			var message = prompt('Wiadomość: ');
+			if(message) {
+				socket.emit('admin messaage', {id: id, message: message});
+			}			
 		});
 		
 		//Bindowanie kickowania
